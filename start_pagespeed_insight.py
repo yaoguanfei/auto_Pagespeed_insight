@@ -65,11 +65,11 @@ if __name__ == '__main__':
     # FeedCard类型
     # title="AG"+"---"+str(app_score["AG"])
     card1 = CardItem(title="PageSpeed Insights--针对移动设备检测结果",
-                     url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png",
-                     pic_url="https://developers.google.com/speed/docs/insights/about?hl=zh-CN&utm_source=PSI&utm_medium=incoming-link&utm_campaign=PSI")
-    card2 = CardItem(title="AG", url="http://www.11506.com/uploadfile/2018/1024/20181024102305336.jpg",
-                     pic_url=app_addr[0])
-    card3 = CardItem(title="优投", url="https://www.dingtalk.com/",
-                     pic_url=app_addr[1])
+                     url="https://developers.google.com/speed/?hl=zh-CN&utm_source=PSI&utm_medium=incoming-link&utm_campaign=PSI",
+                     pic_url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
+    card2 = CardItem(title="AG", url=app_addr[0],
+                     pic_url="http://www.11506.com/uploadfile/2018/1024/20181024102305336.jpg")
+    card3 = CardItem(title="优投", url=app_addr[0],
+                     pic_url="http://www.11506.com/uploadfile/2018/1024/20181024102305336.jpg")
     cards = [card1, card2, card3]
     xiaoding.send_feed_card(cards)
