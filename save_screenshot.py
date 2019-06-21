@@ -9,7 +9,7 @@ from get_driver import driver
 class save:
     def screenshot(self,name,type):
         #i=1
-        scrpath = '/home/youmi/PycharmProjects/selenium_study/screenshot'  # 指定的保存目录
+        scrpath = '/home/youmi/PycharmProjects/selenium_study/screen_shot'  # 指定的保存目录
         timeee = datetime.datetime.now()# 2019-01-10 17:18:20.310134
         capturename = '/' + name + '--' + type + '--'+ str(timeee)+'.png'  # 自定义命名截图名字
         wholepath = scrpath + capturename
