@@ -2,4 +2,5 @@
 *.pyc
 *.iml
 *.csh
-.venv/
+venv/
+.idea/workspace.xml
