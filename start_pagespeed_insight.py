@@ -65,7 +65,7 @@ if __name__ == '__main__':
     # FeedCard类型
     # title="AG"+"---"+str(app_score["AG"])
     card1 = CardItem(title="PageSpeed Insights--针对移动设备检测结果",
-                     url="https://raw.githubusercontent.com/yaoguanfei/PageSpeed_insight_picture/master/PageSpeed_Insight.png",
+                     url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png",
                      pic_url="https://developers.google.com/speed/docs/insights/about?hl=zh-CN&utm_source=PSI&utm_medium=incoming-link&utm_campaign=PSI")
     card2 = CardItem(title="AG", url="http://www.11506.com/uploadfile/2018/1024/20181024102305336.jpg",
                      pic_url=app_addr[0])
