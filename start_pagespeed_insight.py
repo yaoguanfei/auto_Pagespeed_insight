@@ -24,7 +24,8 @@ if __name__ == '__main__':
     # 记录产品检测结果截图的url
     app_addr ={}
     desktop_addr ={}
-    # driver.maximize_window()  # 最大化浏览器
+
+
     driver.implicitly_wait(2)
     driver.get("https://developers.google.com/speed/pagespeed/insights")  # 通过get()方法，打开一个url站点
     time.sleep(5)
@@ -45,7 +46,6 @@ if __name__ == '__main__':
         try:
             # 调用until方法，传入等待方法（节点出现）
             # 出现该元素是检测成功且完毕的必要条件
-            # tag1 = wait.until(EC.presence_of_element_located((By.XPATH, "//div[text() = '移动设备']")))
             tag1 = wait.until(EC.presence_of_element_located((By.XPATH, "//span[text() = '实测数据']")))
         except Exception:
             print(name + "检测失败")
@@ -68,38 +68,7 @@ if __name__ == '__main__':
         print(p2)
         desktop_addr[name] = str(picture_to_github(p2))
 
-    # 对获取的分数进行排序，评级
-    # 95-100：S   90-94： A    80-89：B   70-79： C   60-69：D  <60 :不及格
-    # app_result = [[0 for i in range(5)] for j in range(10)]  #列表生成式法生成二维数组[[AG,等级,截图，logo,具体分数],[],[]...]
-    # tuple_app_score = sorted(app_score.items(), key=lambda item: item[1],reverse=True)#排序后结果[(AG,90),(youtou,88)...]
-    # print(tuple_app_score)
-    # for i in range(len(tuple_app_score)):
-    #     n = tuple_app_score[i][0]
-    #     if tuple_app_score[i][1] is not None:
-    #         f = int(tuple_app_score[i][1])
-    #     app_result[i][0] = n
-    #     if f >= 95 :
-    #         app_result[i][1] = "S"
-    #     elif f >= 90:
-    #         app_result[i][1] = "A"
-    #     elif f >= 80:
-    #         app_result[i][1] = "B"
-    #     elif f >= 70:
-    #         app_result[i][1] = "C"
-    #     elif f >= 70:
-    #         app_result[i][1] = "D"
-    #     else:
-    #         app_result[i][1] = "不及格"
-    #
-    # # 根据排序后的数组，添加对应的截图,logo,分数
-    # for i in range(len(app_result)):
-    #     a = app_result[i][0]
-    #     if a in app_addr.keys():
-    #         app_result[i][2] = app_addr[a]
-    #     if a in app_logo.keys():
-    #         app_result[i][3] = app_logo[a]
-    #     if a in app_score.keys():
-    #         app_result[i][4] = app_score[a]
+    driver.quit()
 
     app_result = summary_result(app_score,app_addr,name_logo)
     desktop_result = summary_result(desktop_score,desktop_addr,name_logo)
@@ -107,10 +76,12 @@ if __name__ == '__main__':
     print(desktop_result)
     print("移动设备检查结果：")
     print(app_result)
+
+
     # *************************************这里填写自己钉钉群自定义机器人的token*****************************************
     webhook = 'https://oapi.dingtalk.com/robot/send?access_token=febec6b869bf218de1798a25469fee9b34ff27c71a5d7f32348d0183dd9ee7eb'
     # 用户手机号列表
-    at_mobiles = ['*************************这里填写需要提醒的用户的手机号码，字符串或数字都可以****************************']
+    # at_mobiles = ['*************************这里填写需要提醒的用户的手机号码，字符串或数字都可以****************************']
     # 初始化机器人小丁
     xiaoding = DingtalkChatbot(webhook)
     # FeedCard类型
@@ -119,11 +90,11 @@ if __name__ == '__main__':
     card1 = CardItem(title="各产品针对桌面设备检测结果",
                      url="https://developers.google.com/speed/?hl=zh-CN&utm_source=PSI&utm_medium=incoming-link&utm_campaign=PSI",
                      pic_url= "https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
-    card2 = CardItem(title=desktop_result[0][0] + "---" + desktop_result[0][1], url=desktop_result[0][2],
+    card2 = CardItem(title="NO.1 "+desktop_result[0][0] + "---" + desktop_result[0][1], url=desktop_result[0][2],
                      pic_url=desktop_result[0][3])
-    card3 = CardItem(title=desktop_result[1][0] + "---" + desktop_result[1][1], url=desktop_result[1][2],
+    card3 = CardItem(title="NO.2 "+desktop_result[1][0] + "---" + desktop_result[1][1], url=desktop_result[1][2],
                      pic_url=desktop_result[1][3])
-    card4 = CardItem(title=desktop_result[2][0] + "---" + desktop_result[2][1], url=desktop_result[2][2],
+    card4 = CardItem(title="NO.3 "+desktop_result[2][0] + "---" + desktop_result[2][1], url=desktop_result[2][2],
                      pic_url=desktop_result[2][3])
     desktop_cards = [card1, card2, card3, card4]
     xiaoding.send_feed_card(desktop_cards)
@@ -133,15 +104,14 @@ if __name__ == '__main__':
 
 
     card1 = CardItem(title="各产品针对移动设备检测结果",
-                     url="https://developers.google.com/speed/?hl=zh-CN&utm_source=PSI&utm_medium=incoming-link&utm_campaign=PSI",
+                     url="https://jingyan.baidu.com/article/ab0b5630bbbddec15bfa7d4d.html",
                      pic_url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
-    card2 = CardItem(title=app_result[0][0]+"---"+app_result[0][1], url=app_result[0][2],
+    card2 = CardItem(title="NO.1 "+app_result[0][0]+"---"+app_result[0][1], url=app_result[0][2],
                      pic_url=app_result[0][3])
-    card3 = CardItem(title=app_result[1][0]+"---"+app_result[1][1], url=app_result[1][2],
+    card3 = CardItem(title="NO.2 "+app_result[1][0]+"---"+app_result[1][1], url=app_result[1][2],
                      pic_url=app_result[1][3])
-    card4 = CardItem(title=app_result[2][0]+"---"+app_result[2][1], url=app_result[2][2],
+    card4 = CardItem(title="NO.3 "+app_result[2][0]+"---"+app_result[2][1], url=app_result[2][2],
                      pic_url=app_result[2][3])
     app_cards = [card1, card2, card3,card4]
     xiaoding.send_feed_card(app_cards)
 
-    driver.quit()
