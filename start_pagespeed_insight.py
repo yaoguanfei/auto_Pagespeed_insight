@@ -99,7 +99,7 @@ if __name__ == '__main__':
             app_result[i][3] = app_logo[a]
         if a in app_score.keys():
             app_result[i][4] = app_score[a]
-    print("app最终结果:   "+app_result)
+    print(app_result)
     # *************************************这里填写自己钉钉群自定义机器人的token*****************************************
     webhook = 'https://oapi.dingtalk.com/robot/send?access_token=febec6b869bf218de1798a25469fee9b34ff27c71a5d7f32348d0183dd9ee7eb'
     # 用户手机号列表
