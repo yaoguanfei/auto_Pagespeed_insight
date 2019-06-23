@@ -88,7 +88,7 @@ if __name__ == '__main__':
     # title="AG"+"---"+str(app_score["AG"])
 
     card1 = CardItem(title="各产品针对桌面设备检测结果",
-                     url="https://developers.google.com/speed/?hl=zh-CN&utm_source=PSI&utm_medium=incoming-link&utm_campaign=PSI",
+                     url="https://jingyan.baidu.com/article/ab0b5630bbbddec15bfa7d4d.html",
                      pic_url= "https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
     card2 = CardItem(title="NO.1 "+desktop_result[0][0] + "---" + desktop_result[0][1], url=desktop_result[0][2],
                      pic_url=desktop_result[0][3])
