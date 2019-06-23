@@ -5,8 +5,11 @@ def summary_result(score,addr,logo):
     print(tuple_app_score)
     for i in range(len(tuple_app_score)):
         n = tuple_app_score[i][0]
-        if tuple_app_score[i][1] is not None:
+        if tuple_app_score[i][1] == '':
+            result[i][1] = "检测失败"
+        else:
             f = int(tuple_app_score[i][1])
+
         result[i][0] = n
         if f >= 95 :
             result[i][1] = "S"
