@@ -55,13 +55,13 @@ if __name__ == '__main__':
         print(p1)
         app_addr[name] = str(picture_to_github(p1))
 
-        tag2 = driver.find_element_by_xpath("//div[text() = 'desktop']")
+        tag2 = driver.find_element_by_xpath("//div[text() = '桌面设备']")
         tag2.click()
         time.sleep(2)
         score2 = driver.find_element_by_xpath(
             "//*[@id='page-speed-insights']/div[2]/div[2]/div[2]/div[2]/div[1]/div/div[1]/a/div[2]")
         desktop_score[name] = score2.text
-        p2 = s.screenshot(name, "桌面设备")
+        p2 = s.screenshot(name, "desktop")
         print(p2)
         desktop_addr[name] = str(picture_to_github(p2))
     print(app_score)
