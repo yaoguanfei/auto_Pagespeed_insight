@@ -67,10 +67,7 @@ if __name__ == '__main__':
         p2 = s.screenshot(english_name, "desktop")
         print(p2)
         desktop_addr[name] = str(picture_to_github(p2))
-    print(app_score)
-    print(desktop_score)
-    print(app_addr)
-    print(desktop_addr)
+
     # 对获取的分数进行排序，评级
     # 95-100：S   90-94： A    80-89：B   70-79： C   60-69：D  <60 :不及格
     # app_result = [[0 for i in range(5)] for j in range(10)]  #列表生成式法生成二维数组[[AG,等级,截图，logo,具体分数],[],[]...]
@@ -106,7 +103,10 @@ if __name__ == '__main__':
 
     app_result = summary_result(app_score,app_addr,name_logo)
     desktop_result = summary_result(desktop_score,desktop_addr,name_logo)
-
+    print("桌面设备检查结果：")
+    print(desktop_result)
+    print("移动设备检查结果：")
+    print(app_result)
     # *************************************这里填写自己钉钉群自定义机器人的token*****************************************
     webhook = 'https://oapi.dingtalk.com/robot/send?access_token=febec6b869bf218de1798a25469fee9b34ff27c71a5d7f32348d0183dd9ee7eb'
     # 用户手机号列表

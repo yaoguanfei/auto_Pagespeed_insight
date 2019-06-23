@@ -19,7 +19,7 @@ def summary_result(score,addr,logo):
             result[i][1] = "B"
         elif f >= 70:
             result[i][1] = "C"
-        elif f >= 70:
+        elif f >= 60:
             result[i][1] = "D"
         else:
             result[i][1] = "不及格"
