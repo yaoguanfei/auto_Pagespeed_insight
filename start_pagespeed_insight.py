@@ -9,6 +9,7 @@ from save_screenshot import s
 from get_driver import driver
 from chatbot import DingtalkChatbot, ActionCard, FeedLink, CardItem
 from push_pic_github import picture_to_github
+from summary_result import summary_result
 
 if __name__ == '__main__':
     #记录产品名和对应分数
@@ -50,11 +51,11 @@ if __name__ == '__main__':
         app_score[name] = score1.text
         print(score1.text)
         time.sleep(5)
-        p1 = s.screenshot(name, "移动设备")
+        p1 = s.screenshot(name, "app")
         print(p1)
         app_addr[name] = str(picture_to_github(p1))
 
-        tag2 = driver.find_element_by_xpath("//div[text() = '桌面设备']")
+        tag2 = driver.find_element_by_xpath("//div[text() = 'desktop']")
         tag2.click()
         time.sleep(2)
         score2 = driver.find_element_by_xpath(
@@ -69,37 +70,40 @@ if __name__ == '__main__':
     print(desktop_addr)
     # 对获取的分数进行排序，评级
     # 95-100：S   90-94： A    80-89：B   70-79： C   60-69：D  <60 :不及格
-    app_result = [[0 for i in range(5)] for j in range(10)]  #列表生成式法生成二维数组[[AG,等级,截图，logo,具体分数],[],[]...]
-    tuple_app_score = sorted(app_score.items(), key=lambda item: item[1],reverse=True)#排序后结果[(AG,90),(youtou,88)...]
-    print(tuple_app_score)
-    for i in range(len(tuple_app_score)):
-        n = tuple_app_score[i][0]
-        if tuple_app_score[i][1] is not None:
-            f = int(tuple_app_score[i][1])
-        app_result[i][0] = n
-        if f >= 95 :
-            app_result[i][1] = "S"
-        elif f >= 90:
-            app_result[i][1] = "A"
-        elif f >= 80:
-            app_result[i][1] = "B"
-        elif f >= 70:
-            app_result[i][1] = "C"
-        elif f >= 70:
-            app_result[i][1] = "D"
-        else:
-            app_result[i][1] = "不及格"
+    # app_result = [[0 for i in range(5)] for j in range(10)]  #列表生成式法生成二维数组[[AG,等级,截图，logo,具体分数],[],[]...]
+    # tuple_app_score = sorted(app_score.items(), key=lambda item: item[1],reverse=True)#排序后结果[(AG,90),(youtou,88)...]
+    # print(tuple_app_score)
+    # for i in range(len(tuple_app_score)):
+    #     n = tuple_app_score[i][0]
+    #     if tuple_app_score[i][1] is not None:
+    #         f = int(tuple_app_score[i][1])
+    #     app_result[i][0] = n
+    #     if f >= 95 :
+    #         app_result[i][1] = "S"
+    #     elif f >= 90:
+    #         app_result[i][1] = "A"
+    #     elif f >= 80:
+    #         app_result[i][1] = "B"
+    #     elif f >= 70:
+    #         app_result[i][1] = "C"
+    #     elif f >= 70:
+    #         app_result[i][1] = "D"
+    #     else:
+    #         app_result[i][1] = "不及格"
+    #
+    # # 根据排序后的数组，添加对应的截图,logo,分数
+    # for i in range(len(app_result)):
+    #     a = app_result[i][0]
+    #     if a in app_addr.keys():
+    #         app_result[i][2] = app_addr[a]
+    #     if a in app_logo.keys():
+    #         app_result[i][3] = app_logo[a]
+    #     if a in app_score.keys():
+    #         app_result[i][4] = app_score[a]
 
-    # 根据排序后的数组，添加对应的截图,logo,分数
-    for i in range(len(app_result)):
-        a = app_result[i][0]
-        if a in app_addr.keys():
-            app_result[i][2] = app_addr[a]
-        if a in app_logo.keys():
-            app_result[i][3] = app_logo[a]
-        if a in app_score.keys():
-            app_result[i][4] = app_score[a]
-    print(app_result)
+    app_result = summary_result(app_score,app_addr,app_logo)
+    desktop_result = summary_result(desktop_score,desktop_addr,desktop_logo)
+
     # *************************************这里填写自己钉钉群自定义机器人的token*****************************************
     webhook = 'https://oapi.dingtalk.com/robot/send?access_token=febec6b869bf218de1798a25469fee9b34ff27c71a5d7f32348d0183dd9ee7eb'
     # 用户手机号列表
@@ -109,14 +113,31 @@ if __name__ == '__main__':
     # FeedCard类型
     # title="AG"+"---"+str(app_score["AG"])
 
-    card1 = CardItem(title="PageSpeed Insights--针对移动设备检测结果",
+    card1 = CardItem(title="各产品针对桌面设备检测结果",
+                     url="https://developers.google.com/speed/?hl=zh-CN&utm_source=PSI&utm_medium=incoming-link&utm_campaign=PSI",
+                     pic_url= "https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
+    card2 = CardItem(title=desktop_result[0][0] + "---" + desktop_result[0][1], url=desktop_result[0][2],
+                     pic_url=desktop_result[0][3])
+    card3 = CardItem(title=desktop_result[1][0] + "---" + desktop_result[1][1], url=desktop_result[1][2],
+                     pic_url=desktop_result[1][3])
+    card4 = CardItem(title=desktop_result[2][0] + "---" + desktop_result[2][1], url=desktop_result[2][2],
+                     pic_url=desktop_result[2][3])
+    desktop_cards = [card1, card2, card3, card4]
+    xiaoding.send_feed_card(desktop_cards)
+
+
+
+
+
+    card1 = CardItem(title="各产品针对移动设备检测结果",
                      url="https://developers.google.com/speed/?hl=zh-CN&utm_source=PSI&utm_medium=incoming-link&utm_campaign=PSI",
                      pic_url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
     card2 = CardItem(title=app_result[0][0]+"---"+app_result[0][1], url=app_result[0][2],
                      pic_url=app_result[0][3])
-    card3 = CardItem(title=app_result[1][0]+"---"+app_result[0][1], url=app_result[0][2],
-                     pic_url=app_result[0][3])
-    card4 = CardItem(title=app_result[2][0]+"---"+app_result[0][1], url=app_result[0][2],
-                     pic_url=app_result[0][3])
-    cards = [card1, card2, card3,card4]
-    xiaoding.send_feed_card(cards)
+    card3 = CardItem(title=app_result[1][0]+"---"+app_result[1][1], url=app_result[1][2],
+                     pic_url=app_result[1][3])
+    card4 = CardItem(title=app_result[2][0]+"---"+app_result[2][1], url=app_result[2][2],
+                     pic_url=app_result[1][3])
+    app_cards = [card1, card2, card3,card4]
+    xiaoding.send_feed_card(app_cards)
+
