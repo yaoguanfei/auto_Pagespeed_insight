@@ -71,12 +71,13 @@ if __name__ == '__main__':
     # 95-100：S   90-94： A    80-89：B   70-79： C   60-69：D  <60 :不及格
     app_result = [[0 for i in range(5)] for j in range(10)]  #列表生成式法生成二维数组[[AG,等级,截图，logo,具体分数],[],[]...]
     tuple_app_score = sorted(app_score.items(), key=lambda item: item[1],reverse=True)#排序后结果[(AG,90),(youtou,88)...]
+    print(tuple_app_score)
     for i in range(len(tuple_app_score)):
         n = tuple_app_score[i][0]
-        f = tuple_app_score[i][1]
+        f = int(tuple_app_score[i][1])
         app_result[i][0] = n
         if f >= 95 :
-            app_result[i][1] ="S"
+            app_result[i][1] = "S"
         elif f >= 90:
             app_result[i][1] = "A"
         elif f >= 80:
