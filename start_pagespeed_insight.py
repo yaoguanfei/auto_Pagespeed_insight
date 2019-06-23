@@ -144,3 +144,4 @@ if __name__ == '__main__':
     app_cards = [card1, card2, card3,card4]
     xiaoding.send_feed_card(app_cards)
 
+    driver.quit()
