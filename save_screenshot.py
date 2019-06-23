@@ -1,8 +1,7 @@
-from selenium.webdriver.support.ui import Select   # Select类用于处理下拉框
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from pathlib import Path
-import datetime
+from datetime import datetime
 from get_driver import driver
 
 
@@ -10,7 +9,8 @@ class save:
     def screenshot(self,name,type):
         #i=1
         scrpath = '/home/youmi/PycharmProjects/selenium_study/screen_shot'  # 指定的保存目录
-        timeee = datetime.datetime.now()# 2019-01-10 17:18:20.310134
+        dt = datetime.now()# 2019-01-10 17:18:20.310134
+        timeee = dt.strftime( '%Y-%m-%d--%H:%M:%S' )
         capturename = '/' + name + '--' + type + '--'+ str(timeee)+'.png'  # 自定义命名截图名字
         wholepath = scrpath + capturename
         if Path(scrpath).is_dir():  # 判断文件夹路径是否已经存在

@@ -10,14 +10,16 @@ from get_driver import driver
 from chatbot import DingtalkChatbot, ActionCard, FeedLink, CardItem
 from push_pic_github import picture_to_github
 from summary_result import summary_result
+from config import Chinese_to_English
+
+
 
 if __name__ == '__main__':
     #记录产品名和对应分数
     app_score = {}
     desktop_score = {}
     # 记录产品名和对应logo的线上地址
-    app_logo = {}
-    desktop_logo = {}
+    name_logo = {}
 
     # 记录产品检测结果截图的url
     app_addr ={}
@@ -32,9 +34,10 @@ if __name__ == '__main__':
     # 遍历读取到数据，逐一进行检测，获取分数，上传截图到git上并返回图片url
     for i in range(len(csvresult)):
         name = str(csvresult[i][0])
+        english_name = Chinese_to_English[name]
         url = str(csvresult[i][1])
         logo = str ((csvresult[i][2]))
-        app_logo[name] = logo
+        name_logo[name] = logo
         input.clear()
         input.send_keys(url)
         input.send_keys(Keys.ENTER)
@@ -51,7 +54,7 @@ if __name__ == '__main__':
         app_score[name] = score1.text
         print(score1.text)
         time.sleep(5)
-        p1 = s.screenshot(name, "app")
+        p1 = s.screenshot(english_name, "app")
         print(p1)
         app_addr[name] = str(picture_to_github(p1))
 
@@ -61,7 +64,7 @@ if __name__ == '__main__':
         score2 = driver.find_element_by_xpath(
             "//*[@id='page-speed-insights']/div[2]/div[2]/div[2]/div[2]/div[1]/div/div[1]/a/div[2]")
         desktop_score[name] = score2.text
-        p2 = s.screenshot(name, "desktop")
+        p2 = s.screenshot(english_name, "desktop")
         print(p2)
         desktop_addr[name] = str(picture_to_github(p2))
     print(app_score)
@@ -101,8 +104,8 @@ if __name__ == '__main__':
     #     if a in app_score.keys():
     #         app_result[i][4] = app_score[a]
 
-    app_result = summary_result(app_score,app_addr,app_logo)
-    desktop_result = summary_result(desktop_score,desktop_addr,desktop_logo)
+    app_result = summary_result(app_score,app_addr,name_logo)
+    desktop_result = summary_result(desktop_score,desktop_addr,name_logo)
 
     # *************************************这里填写自己钉钉群自定义机器人的token*****************************************
     webhook = 'https://oapi.dingtalk.com/robot/send?access_token=febec6b869bf218de1798a25469fee9b34ff27c71a5d7f32348d0183dd9ee7eb'
@@ -137,7 +140,7 @@ if __name__ == '__main__':
     card3 = CardItem(title=app_result[1][0]+"---"+app_result[1][1], url=app_result[1][2],
                      pic_url=app_result[1][3])
     card4 = CardItem(title=app_result[2][0]+"---"+app_result[2][1], url=app_result[2][2],
-                     pic_url=app_result[1][3])
+                     pic_url=app_result[2][3])
     app_cards = [card1, card2, card3,card4]
     xiaoding.send_feed_card(app_cards)
 
