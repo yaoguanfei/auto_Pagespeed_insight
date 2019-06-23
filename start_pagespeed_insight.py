@@ -99,7 +99,7 @@ if __name__ == '__main__':
             app_result[i][3] = app_logo[a]
         if a in app_score.keys():
             app_result[i][4] = app_score[a]
-    print(app_result)
+    print("app最终结果:   "+app_result)
     # *************************************这里填写自己钉钉群自定义机器人的token*****************************************
     webhook = 'https://oapi.dingtalk.com/robot/send?access_token=febec6b869bf218de1798a25469fee9b34ff27c71a5d7f32348d0183dd9ee7eb'
     # 用户手机号列表
@@ -108,8 +108,7 @@ if __name__ == '__main__':
     xiaoding = DingtalkChatbot(webhook)
     # FeedCard类型
     # title="AG"+"---"+str(app_score["AG"])
-    print(app_addr[0])
-    print(app_addr[1])
+
     card1 = CardItem(title="PageSpeed Insights--针对移动设备检测结果",
                      url="https://developers.google.com/speed/?hl=zh-CN&utm_source=PSI&utm_medium=incoming-link&utm_campaign=PSI",
                      pic_url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
