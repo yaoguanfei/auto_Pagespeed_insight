@@ -54,7 +54,7 @@ if __name__ == '__main__':
         p1 = s.screenshot(english_name, "app")
         print(p1)
         app_addr[name] = str(picture_to_github(p1))
-
+        time.sleep(2)
         tag2 = driver.find_element_by_xpath("//div[text() = '桌面设备']")
         tag2.click()
         time.sleep(2)
