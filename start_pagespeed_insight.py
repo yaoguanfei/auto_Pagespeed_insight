@@ -48,7 +48,7 @@ if __name__ == '__main__':
             print(name + "检测失败")
             continue
         score1 = driver.find_element_by_class_name("lh-gauge__percentage")
-        app_score[name] = score1.text
+        app_score[name] = int(score1.text)
         print(score1.text)
         time.sleep(2)
         p1 = s.screenshot(english_name, "app")
@@ -60,7 +60,7 @@ if __name__ == '__main__':
         time.sleep(2)
         score2 = driver.find_element_by_xpath(
             "//*[@id='page-speed-insights']/div[2]/div[2]/div[2]/div[2]/div[1]/div/div[1]/a/div[2]")
-        desktop_score[name] = score2.text
+        desktop_score[name] = int(score2.text)
         p2 = s.screenshot(english_name, "desktop")
         print(p2)
         desktop_addr[name] = str(picture_to_github(p2))
