@@ -12,32 +12,29 @@ from push_pic_github import picture_to_github
 from summary_result import summary_result
 from config import Chinese_to_English
 
-
-
 if __name__ == '__main__':
-    #记录产品名和对应分数
+    # 记录产品名和对应分数
     app_score = {}
     desktop_score = {}
     # 记录产品名和对应logo的线上地址
     name_logo = {}
 
     # 记录产品检测结果截图的url
-    app_addr ={}
-    desktop_addr ={}
-
+    app_addr = {}
+    desktop_addr = {}
 
     driver.implicitly_wait(2)
     driver.get("https://developers.google.com/speed/pagespeed/insights")  # 通过get()方法，打开一个url站点
     time.sleep(5)
     input = driver.find_element_by_name("url")
-    #读取到的webdata.csv 的每一行数据
+    # 读取到的webdata.csv 的每一行数据
     csvresult = read_csv2("webdata.csv")
     # 遍历读取到数据，逐一进行检测，获取分数，上传截图到git上并返回图片url
     for i in range(len(csvresult)):
         name = str(csvresult[i][0])
         english_name = Chinese_to_English[name]
         url = str(csvresult[i][1])
-        logo = str ((csvresult[i][2]))
+        logo = str((csvresult[i][2]))
         name_logo[name] = logo
         input.clear()
         input.send_keys(url)
@@ -70,13 +67,12 @@ if __name__ == '__main__':
 
     driver.quit()
 
-    app_result = summary_result(app_score,app_addr,name_logo)
-    desktop_result = summary_result(desktop_score,desktop_addr,name_logo)
+    app_result = summary_result(app_score, app_addr, name_logo)
+    desktop_result = summary_result(desktop_score, desktop_addr, name_logo)
     print("桌面设备检查结果：")
     print(desktop_result)
     print("移动设备检查结果：")
     print(app_result)
-
 
     # *************************************这里填写自己钉钉群自定义机器人的token*****************************************
     webhook = 'https://oapi.dingtalk.com/robot/send?access_token=febec6b869bf218de1798a25469fee9b34ff27c71a5d7f32348d0183dd9ee7eb'
@@ -87,31 +83,42 @@ if __name__ == '__main__':
     # FeedCard类型
     # title="AG"+"---"+str(app_score["AG"])
 
-    card1 = CardItem(title="各产品针对桌面设备检测结果",
-                     url="https://jingyan.baidu.com/article/ab0b5630bbbddec15bfa7d4d.html",
-                     pic_url= "https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
-    card2 = CardItem(title="NO.1 "+desktop_result[0][0] + "---" + desktop_result[0][1], url=desktop_result[0][2],
-                     pic_url=desktop_result[0][3])
-    card3 = CardItem(title="NO.2 "+desktop_result[1][0] + "---" + desktop_result[1][1], url=desktop_result[1][2],
-                     pic_url=desktop_result[1][3])
-    card4 = CardItem(title="NO.3 "+desktop_result[2][0] + "---" + desktop_result[2][1], url=desktop_result[2][2],
-                     pic_url=desktop_result[2][3])
-    desktop_cards = [card1, card2, card3, card4]
+    card1 = CardItem(title="桌面设备-加载性能排行榜",
+                     url="https://www.yuque.com/youmiqa/wiki/kshrho",
+                     pic_url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
+    card2 = CardItem(
+        title="No.1 " + desktop_result[0][0] + "(%s分)" % desktop_result[0][4] + "---" + desktop_result[0][1],
+        url=desktop_result[0][2],
+        pic_url=desktop_result[0][3])
+    card3 = CardItem(
+        title="No.2 " + desktop_result[1][0] + "(%s分)" % desktop_result[1][4] + "---" + desktop_result[1][1],
+        url=desktop_result[1][2],
+        pic_url=desktop_result[1][3])
+    card4 = CardItem(
+        title="No.3 " + desktop_result[2][0] + "(%s分)" % desktop_result[2][4] + "---" + desktop_result[2][1],
+        url=desktop_result[2][2],
+        pic_url=desktop_result[2][3])
+    card5 = CardItem(
+        title="No.4 " + desktop_result[3][0] + "(%s分)" % desktop_result[3][4] + "---" + desktop_result[3][1],
+        url=desktop_result[2][2],
+        pic_url=desktop_result[3][3])
+    desktop_cards = [card1, card2, card3, card4, card5]
     xiaoding.send_feed_card(desktop_cards)
 
-
-
-
-
-    card1 = CardItem(title="各产品针对移动设备检测结果",
-                     url="https://jingyan.baidu.com/article/ab0b5630bbbddec15bfa7d4d.html",
+    card1 = CardItem(title="移动设备-加载性能排行榜",
+                     url="https://www.yuque.com/youmiqa/wiki/kshrho",
                      pic_url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
-    card2 = CardItem(title="NO.1 "+app_result[0][0]+"---"+app_result[0][1], url=app_result[0][2],
+    card2 = CardItem(title="No.1 " + app_result[0][0] + "(%s分)" % app_result[0][4] + "---" + app_result[0][1],
+                     url=app_result[0][2],
                      pic_url=app_result[0][3])
-    card3 = CardItem(title="NO.2 "+app_result[1][0]+"---"+app_result[1][1], url=app_result[1][2],
+    card3 = CardItem(title="No.2 " + app_result[1][0] + "(%s分)" % app_result[1][4] + "---" + app_result[1][1],
+                     url=app_result[1][2],
                      pic_url=app_result[1][3])
-    card4 = CardItem(title="NO.3 "+app_result[2][0]+"---"+app_result[2][1], url=app_result[2][2],
+    card4 = CardItem(title="No.3 " + app_result[2][0] + "(%s分)" % app_result[2][4] + "---" + app_result[2][1],
+                     url=app_result[2][2],
                      pic_url=app_result[2][3])
-    app_cards = [card1, card2, card3,card4]
+    card5 = CardItem(title="No.4 " + app_result[3][0] + "(%s分)" % app_result[3][4] + "---" + app_result[3][1],
+                     url=app_result[3][2],
+                     pic_url=app_result[3][3])
+    app_cards = [card1, card2, card3, card4, card5]
     xiaoding.send_feed_card(app_cards)
-

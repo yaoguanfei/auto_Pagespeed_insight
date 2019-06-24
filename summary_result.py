@@ -15,18 +15,16 @@ def summary_result(score,addr,logo):
             f = int(tuple_app_score[i][1])
 
         result[i][0] = n
-        if f >= 95 :
+        if f == 100:
             result[i][1] = "S"
-        elif f >= 90:
+        elif f >= 95:
             result[i][1] = "A"
-        elif f >= 80:
+        elif f >= 85:
             result[i][1] = "B"
-        elif f >= 70:
+        elif f >= 50:
             result[i][1] = "C"
-        elif f >= 60:
-            result[i][1] = "D"
         else:
-            result[i][1] = "不及格"
+            result[i][1] = "D"
 
     # 根据排序后的数组，添加对应的截图,logo,分数
     for i in range(len(result)):

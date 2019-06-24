@@ -1,4 +1,6 @@
 import csv
+
+
 def read_csv1(file):
     with open(file, 'r') as f:
         results = f.readlines()
@@ -24,5 +26,5 @@ def read_csv2(file):
 
 
 if __name__ == '__main__':
-    csvresult =read_csv1("webdata.csv")
-    csvresult =read_csv2("webdata.csv")
+    csvresult = read_csv1("webdata.csv")
+    csvresult = read_csv2("webdata.csv")
