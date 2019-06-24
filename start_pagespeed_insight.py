@@ -23,7 +23,7 @@ if __name__ == '__main__':
     app_addr = {}
     desktop_addr = {}
 
-    driver.implicitly_wait(2)
+    driver.implicitly_wait(1)
     driver.get("https://developers.google.com/speed/pagespeed/insights")  # 通过get()方法，打开一个url站点
     time.sleep(5)
     input = driver.find_element_by_name("url")
