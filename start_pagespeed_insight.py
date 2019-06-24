@@ -39,7 +39,7 @@ if __name__ == '__main__':
         input.clear()
         input.send_keys(url)
         input.send_keys(Keys.ENTER)
-        wait = WebDriverWait(driver, 300)  # 显式等待，引入WebDriverWait，规定最大等待时长
+        wait = WebDriverWait(driver, 500)  # 显式等待，引入WebDriverWait，规定最大等待时长
         try:
             # 调用until方法，传入等待方法（节点出现）
             # 出现该元素是检测成功且完毕的必要条件
