@@ -25,7 +25,7 @@ if __name__ == '__main__':
 
     driver.implicitly_wait(1)
     driver.get("https://developers.google.com/speed/pagespeed/insights")  # 通过get()方法，打开一个url站点
-    time.sleep(5)
+    time.sleep(2)
     input = driver.find_element_by_name("url")
     # 读取到的webdata.csv 的每一行数据
     csvresult = read_csv2("webdata.csv")
@@ -50,7 +50,7 @@ if __name__ == '__main__':
         score1 = driver.find_element_by_class_name("lh-gauge__percentage")
         app_score[name] = score1.text
         print(score1.text)
-        time.sleep(5)
+        time.sleep(2)
         p1 = s.screenshot(english_name, "app")
         print(p1)
         app_addr[name] = str(picture_to_github(p1))
