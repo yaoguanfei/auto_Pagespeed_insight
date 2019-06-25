@@ -131,7 +131,7 @@ if __name__ == '__main__':
 
     app_cards = [card1]
     for i in range(6):
-        card = CardItem(title="No.1 " + app_result[i][0] + "(跑分%s): " % app_result[i][4] + "性能%s级" % app_result[i][1],
+        card = CardItem(title="No.%s" % (i+1) + app_result[i][0] + "(跑分%s): " % app_result[i][4] + "性能%s级" % app_result[i][1],
                         url=app_result[i][2],
                         pic_url=app_result[i][3])
         app_cards.append(card)
