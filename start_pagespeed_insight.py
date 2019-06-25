@@ -71,8 +71,8 @@ if __name__ == '__main__':
         print(p2)
         pic_addr = "https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot%s" % p2
         desktop_addr[name] = str(p2)
-        picture_to_github()
-
+    # 一次性上传所有的截图
+    picture_to_github()
     driver.quit()
 
     app_result = summary_result(app_score, app_addr, name_logo)
