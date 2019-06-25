@@ -1,8 +1,7 @@
-
-def summary_result(score,addr,logo):
+def summary_result(score, addr, logo):
     print(score)
-    result = [[0 for i in range(5)] for j in range(10)]  #列表生成式法生成二维数组[[AG,等级,截图，logo,具体分数],[],[]...]
-    tuple_app_score = sorted(score.items(), key=lambda item: item[1],reverse=True)#排序后结果[(AG,90),(youtou,88)...]
+    result = [[0 for i in range(5)] for j in range(10)]  # 列表生成式法生成二维数组[[AG,等级,截图，logo,具体分数],[],[]...]
+    tuple_app_score = sorted(score.items(), key=lambda item: item[1], reverse=True)  # 排序后结果[(AG,90),(youtou,88)...]
     print(tuple_app_score)
 
     # 对获取的分数进行排序，评级

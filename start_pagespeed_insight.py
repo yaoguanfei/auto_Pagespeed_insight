@@ -40,7 +40,7 @@ if __name__ == '__main__':
         input.clear()
         input.send_keys(url)
         input.send_keys(Keys.ENTER)
-        wait = WebDriverWait(driver, 150)  # 显式等待，引入WebDriverWait，规定最大等待时长
+        wait = WebDriverWait(driver, 300)  # 显式等待，引入WebDriverWait，规定最大等待时长
         try:
             # 调用until方法，传入等待方法（节点出现）
             # 出现该元素是检测成功且完毕的必要条件
@@ -92,41 +92,69 @@ if __name__ == '__main__':
     # title="AG"+"---"+str(app_score["AG"])
 
     card1 = CardItem(title="Web产品加载性能排行榜(Desktop)",
-                     url="https://www.yuque.com/youmiqa/wiki/kshrho",
+                     url="https://www.yuque.com/docs/share/56975e6b-ba1b-42da-ad20-f49fb068d150",
                      pic_url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
-    card2 = CardItem(
-        title="No.1 " + desktop_result[0][0] + "(跑分%s)" % desktop_result[0][4] + "性能%s级" % desktop_result[0][1],
-        url=desktop_result[0][2],
-        pic_url=desktop_result[0][3])
-    card3 = CardItem(
-        title="No.2 " + desktop_result[1][0] + "(跑分%s)" % desktop_result[1][4] + "性能%s级" % desktop_result[1][1],
-        url=desktop_result[1][2],
-        pic_url=desktop_result[1][3])
-    card4 = CardItem(
-        title="No.3 " + desktop_result[2][0] + "(跑分%s)" % desktop_result[2][4] + "性能%s级" % desktop_result[2][1],
-        url=desktop_result[2][2],
-        pic_url=desktop_result[2][3])
-    card5 = CardItem(
-        title="No.4 " + desktop_result[3][0] + "(跑分%s)" % desktop_result[3][4] + "性能%s级" % desktop_result[3][1],
-        url=desktop_result[2][2],
-        pic_url=desktop_result[3][3])
-    desktop_cards = [card1, card2, card3, card4, card5]
+    desktop_cards = [card1]
+
+    # card2 = CardItem(
+    #     title="No.1 " + desktop_result[0][0] + "(跑分%s): " % desktop_result[0][4] + "性能%s级" % desktop_result[0][1],
+    #     url=desktop_result[0][2],
+    #     pic_url=desktop_result[0][3])
+    # # card3 = CardItem(
+    #     title="No.2 " + desktop_result[1][0] + "(跑分%s): " % desktop_result[1][4] + "性能%s级" % desktop_result[1][1],
+    #     url=desktop_result[1][2],
+    #     pic_url=desktop_result[1][3])
+    # card4 = CardItem(
+    #     title="No.3 " + desktop_result[2][0] + "(跑分%s): " % desktop_result[2][4] + "性能%s级" % desktop_result[2][1],
+    #     url=desktop_result[2][2],
+    #     pic_url=desktop_result[2][3])
+    # card5 = CardItem(
+    #     title="No.4 " + desktop_result[3][0] + "(跑分%s): " % desktop_result[3][4] + "性能%s级" % desktop_result[3][1],
+    #     url=desktop_result[2][2],
+    #     pic_url=desktop_result[3][3])
+    # desktop_cards = [card1, card2, card3, card4, card5]
+    # xiaoding.send_feed_card(desktop_cards)
+    for i in range(6):
+        card = CardItem(
+            title="No.1 " + desktop_result[i][0] + "(跑分%s): " % desktop_result[i][4] + "性能%s级" % desktop_result[i][1],
+            url=desktop_result[i][2],
+            pic_url=desktop_result[i][3])
+    desktop_cards.append(card)
     xiaoding.send_feed_card(desktop_cards)
 
+
+
+
+
+
+
+
+
+
+
+
     card1 = CardItem(title="Web产品加载性能排行榜(Mobile)",
-                     url="https://www.yuque.com/youmiqa/wiki/kshrho",
+                     url="https://www.yuque.com/docs/share/56975e6b-ba1b-42da-ad20-f49fb068d150",
                      pic_url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
-    card2 = CardItem(title="No.1 " + app_result[0][0] + "(跑分%s)" % app_result[0][4] + "性能%s级" % app_result[0][1],
-                     url=app_result[0][2],
-                     pic_url=app_result[0][3])
-    card3 = CardItem(title="No.2 " + app_result[1][0] + "(跑分%s)" % app_result[1][4] + "性能%s级" % app_result[1][1],
-                     url=app_result[1][2],
-                     pic_url=app_result[1][3])
-    card4 = CardItem(title="No.3 " + app_result[2][0] + "(跑分%s)" % app_result[2][4] + "性能%s级" % app_result[2][1],
-                     url=app_result[2][2],
-                     pic_url=app_result[2][3])
-    card5 = CardItem(title="No.4 " + app_result[3][0] + "(跑分%s)" % app_result[3][4] + "性能%s级" % app_result[3][1],
-                     url=app_result[3][2],
-                     pic_url=app_result[3][3])
-    app_cards = [card1, card2, card3, card4, card5]
+
+    app_cards = [card1]
+    for i in range(6):
+        card = CardItem(title="No.1 " + app_result[i][0] + "(跑分%s): " % app_result[i][4] + "性能%s级" % app_result[i][1],
+                        url=app_result[i][2],
+                        pic_url=app_result[i][3])
+    app_cards.append(card)
     xiaoding.send_feed_card(app_cards)
+    # card2 = CardItem(title="No.1 " + app_result[0][0] + "(跑分%s): " % app_result[0][4] + "性能%s级" % app_result[0][1],
+    #                  url=app_result[0][2],
+    #                  pic_url=app_result[0][3])
+    # card3 = CardItem(title="No.2 " + app_result[1][0] + "(跑分%s): " % app_result[1][4] + "性能%s级" % app_result[1][1],
+    #                  url=app_result[1][2],
+    #                  pic_url=app_result[1][3])
+    # card4 = CardItem(title="No.3 " + app_result[2][0] + "(跑分%s): " % app_result[2][4] + "性能%s级" % app_result[2][1],
+    #                  url=app_result[2][2],
+    #                  pic_url=app_result[2][3])
+    # card5 = CardItem(title="No.4 " + app_result[3][0] + "(跑分%s): " % app_result[3][4] + "性能%s级" % app_result[3][1],
+    #                  url=app_result[3][2],
+    #                  pic_url=app_result[3][3])
+    # app_cards = [card1, card2, card3, card4, card5]
+    # xiaoding.send_feed_card(app_cards)
