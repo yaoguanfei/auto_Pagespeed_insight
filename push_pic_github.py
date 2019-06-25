@@ -6,7 +6,7 @@
 #必须加上上面四行,否则各种编码的错误爆出
 
 import os
-def picture_to_github(path):
+def picture_to_github():
     os.system("cd /home/youmi/PycharmProjects/selenium_study && git add . && git status && git commit -a -m 'update' && git push  origin master")
-    pic_addr = "https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot%s" % path
-    return pic_addr
+    # pic_addr = "https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot%s" % path
+    # return pic_addr
