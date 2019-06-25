@@ -70,7 +70,7 @@ if __name__ == '__main__':
         p2 = s.screenshot(english_name, "desktop")
         print(p2)
         pic_addr = "https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot%s" % p2
-        desktop_addr[name] = str(p2)
+        desktop_addr[name] = str(pic_addr)
     # 一次性上传所有的截图
     picture_to_github()
     driver.quit()
@@ -116,19 +116,11 @@ if __name__ == '__main__':
     # xiaoding.send_feed_card(desktop_cards)
     for i in range(6):
         card = CardItem(
-            title="No.1 " + desktop_result[i][0] + "(跑分%s): " % desktop_result[i][4] + "性能%s级" % desktop_result[i][1],
+            title="No.%s" % (i+1) + desktop_result[i][0] + "(跑分%s): " % desktop_result[i][4] + "性能%s级" % desktop_result[i][1],
             url=desktop_result[i][2],
             pic_url=desktop_result[i][3])
-    desktop_cards.append(card)
+        desktop_cards.append(card)
     xiaoding.send_feed_card(desktop_cards)
-
-
-
-
-
-
-
-
 
 
 
@@ -142,7 +134,7 @@ if __name__ == '__main__':
         card = CardItem(title="No.1 " + app_result[i][0] + "(跑分%s): " % app_result[i][4] + "性能%s级" % app_result[i][1],
                         url=app_result[i][2],
                         pic_url=app_result[i][3])
-    app_cards.append(card)
+        app_cards.append(card)
     xiaoding.send_feed_card(app_cards)
     # card2 = CardItem(title="No.1 " + app_result[0][0] + "(跑分%s): " % app_result[0][4] + "性能%s级" % app_result[0][1],
     #                  url=app_result[0][2],
