@@ -114,9 +114,9 @@ if __name__ == '__main__':
     #     pic_url=desktop_result[3][3])
     # desktop_cards = [card1, card2, card3, card4, card5]
     # xiaoding.send_feed_card(desktop_cards)
-    for i in range(6):
+    for i in range(7):
         card = CardItem(
-            title="No.%s" % (i+1) + desktop_result[i][0] + "(跑分%s): " % desktop_result[i][4] + "性能%s级" % desktop_result[i][1],
+            title="No.%s " % (i+1) + desktop_result[i][0] + "(跑分%s): " % desktop_result[i][4] + "性能%s级" % desktop_result[i][1],
             url=desktop_result[i][2],
             pic_url=desktop_result[i][3])
         desktop_cards.append(card)
@@ -130,8 +130,8 @@ if __name__ == '__main__':
                      pic_url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
 
     app_cards = [card1]
-    for i in range(6):
-        card = CardItem(title="No.%s" % (i+1) + app_result[i][0] + "(跑分%s): " % app_result[i][4] + "性能%s级" % app_result[i][1],
+    for i in range(7):
+        card = CardItem(title="No.%s " % (i+1) + app_result[i][0] + "(跑分%s): " % app_result[i][4] + "性能%s级" % app_result[i][1],
                         url=app_result[i][2],
                         pic_url=app_result[i][3])
         app_cards.append(card)
