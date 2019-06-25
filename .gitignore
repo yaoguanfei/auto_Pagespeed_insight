@@ -3,4 +3,4 @@
 *.iml
 *.csh
 venv/
-.idea/workspace.xml
+.idea/*

@@ -40,22 +40,20 @@ if __name__ == '__main__':
         input.clear()
         input.send_keys(url)
         input.send_keys(Keys.ENTER)
-        wait = WebDriverWait(driver, 300)  # 显式等待，引入WebDriverWait，规定最大等待时长
+        wait = WebDriverWait(driver, 500)  # 显式等待，引入WebDriverWait，规定最大等待时长
         try:
             # 调用until方法，传入等待方法（节点出现）
             # 出现该元素是检测成功且完毕的必要条件
             tag1 = wait.until(EC.presence_of_element_located((By.XPATH, "//span[text() = '实测数据']")))
         except Exception:
-            driver.refresh()  # 刷新方法 refresh
-
-        try:
-            # score1 = driver.find_element_by_class_name("lh-gauge__percentage")
-            score1 = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "lh-gauge__percentage")))
-        except Exception:
             print("此次检测失败，已结束程序，请重新开始")
             sys.exit()
-        app_score[name] = int(score1.text)
+
+        score1 = driver.find_element_by_class_name("lh-gauge__percentage")
+        # score1 = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "lh-gauge__percentage")))
         print(score1.text)
+        app_score[name] = int(score1.text)
+
         time.sleep(2)
         p1 = s.screenshot(english_name, "app")
         print(p1)
