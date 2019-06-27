@@ -30,7 +30,7 @@ if __name__ == '__main__':
     input = driver.find_element_by_name("url")
     # 读取到的webdata.csv 的每一行数据
     csvresult = read_csv2("webdata.csv")
-    # 遍历读取到数据，逐一进行检测，获取分数，上传截图到git上并返回图片url
+    # 遍历读取到数据，逐一进行检测，获取分数，上传截图到github上并返回图片url
     for i in range(len(csvresult)):
         name = str(csvresult[i][0])
         english_name = Chinese_to_English[name]
@@ -91,23 +91,22 @@ if __name__ == '__main__':
     xiaoding = DingtalkChatbot(webhook)
     # FeedCard类型
 
-    # card1 = CardItem(title="Web产品加载性能排行榜(Desktop)",
-    #                  url="https://www.yuque.com/docs/share/56975e6b-ba1b-42da-ad20-f49fb068d150",
-    #                  pic_url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
-    # desktop_cards = [card1]
-    #
-    #
-    # for i in range(7):
-    #     card = CardItem(
-    #         title="No.%s " % (i+1) + desktop_result[i][0] + "(跑分%s): " % desktop_result[i][4] + "性能%s级" % desktop_result[i][1],
-    #         url=desktop_result[i][2],
-    #         pic_url=desktop_result[i][3])
-    #     desktop_cards.append(card)
-    # xiaoding.send_feed_card(desktop_cards)
-    #
-    #
-    #
-    #
+    card1 = CardItem(title="Web产品加载性能排行榜(Desktop)",
+                     url="https://www.yuque.com/docs/share/56975e6b-ba1b-42da-ad20-f49fb068d150",
+                     pic_url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
+    desktop_cards = [card1]
+
+
+    for i in range(7):
+        card = CardItem(
+            title="%s、" % (i+1) + desktop_result[i][0] + "(跑分%s): " % desktop_result[i][4] + "性能%s级" % desktop_result[i][1],
+            url=desktop_result[i][2],
+            pic_url=desktop_result[i][3])
+        desktop_cards.append(card)
+    xiaoding.send_feed_card(desktop_cards)
+
+
+
     # card1 = CardItem(title="Web产品加载性能排行榜(Mobile)",
     #                  url="https://www.yuque.com/docs/share/56975e6b-ba1b-42da-ad20-f49fb068d150",
     #                  pic_url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
@@ -121,24 +120,16 @@ if __name__ == '__main__':
     # xiaoding.send_feed_card(app_cards)
 
     # Markdown类型
-    title = '# **Web产品加载性能排行榜(Desktop)** \n ' + \
-            ">![PageSpeed Insight](https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png)\n" + \
-            "> ## [了解更多详情](https://www.yuque.com/docs/share/56975e6b-ba1b-42da-ad20-f49fb068d150)\n"
-    summary_text = title
-    for i in range(7):
-        text = "- %s、" % (i + 1) + desktop_result[i][0] + "(跑分%s): " % desktop_result[i][4] + "性能**%s**级" % \
-               desktop_result[i][
-                   1] + '\n' + \
-               '>![结果截图](%s)\n' % desktop_result[i][2]
-        summary_text = summary_text + text
-    xiaoding.send_markdown(title='Web产品加载性能排行榜', text=summary_text, is_at_all=True)
-
-    # title = '# **Web产品加载性能排行榜(Mobile)** \n '
+    # title = '# **Web产品加载性能排行榜(Desktop)** \n ' + \
+    #         ">![PageSpeed Insight](https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png)\n" + \
+    #         "> ## [了解更多详情](https://www.yuque.com/docs/share/56975e6b-ba1b-42da-ad20-f49fb068d150)\n"
     # summary_text = title
     # for i in range(7):
-    #     text = "- %s、" % (i + 1) + app_result[i][0] + "(跑分%s): " % app_result[i][4] + "性能**%s**级" % app_result[i][
-    #         1] + '\n' + \
-    #            '>![logo](%s)\n' % app_result[i][3] + \
-    #            '>![结果截图](%s)\n' % app_result[i][2]
+    #     text = "- %s、" % (i + 1) + desktop_result[i][0] + "(跑分%s): " % desktop_result[i][4] + "性能**%s**级" % \
+    #            desktop_result[i][
+    #                1] + '\n' + \
+    #            '>![结果截图](%s)\n' % desktop_result[i][2]
     #     summary_text = summary_text + text
     # xiaoding.send_markdown(title='Web产品加载性能排行榜', text=summary_text, is_at_all=True)
+
+
