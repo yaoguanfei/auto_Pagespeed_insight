@@ -118,18 +118,18 @@ if __name__ == '__main__':
     #     app_cards.append(card)
     # xiaoding.send_feed_card(app_cards)
 
-
     # Markdown类型
-    title = '# **Web产品加载性能排行榜(Desktop)** \n '
+    title = '# **Web产品加载性能排行榜(Desktop)** \n ' + \
+            ">![PageSpeed Insight]https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png" + \
+            "> ## [了解更多详情](https://www.yuque.com/docs/share/56975e6b-ba1b-42da-ad20-f49fb068d150)\n"
     summary_text = title
     for i in range(7):
-        text = "- %s、" % (i + 1) + desktop_result[i][0] + "(跑分%s): " %desktop_result[i][4] + "性能**%s**级" % desktop_result[i][
-            1] + '\n' + \
-               '>![logo](%s)\n' % desktop_result[i][3] + \
+        text = "- %s、" % (i + 1) + desktop_result[i][0] + "(跑分%s): " % desktop_result[i][4] + "性能**%s**级" % \
+               desktop_result[i][
+                   1] + '\n' + \
                '>![结果截图](%s)\n' % desktop_result[i][2]
         summary_text = summary_text + text
     xiaoding.send_markdown(title='Web产品加载性能排行榜', text=summary_text, is_at_all=True)
-
 
     # title = '# **Web产品加载性能排行榜(Mobile)** \n '
     # summary_text = title
