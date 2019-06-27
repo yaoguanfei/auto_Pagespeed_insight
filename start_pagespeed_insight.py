@@ -63,7 +63,8 @@ if __name__ == '__main__':
         tag2 = driver.find_element_by_xpath("//div[text() = '桌面设备']")
         tag2.click()
         time.sleep(2)
-        score2 = driver.find_element_by_xpath("//*[@id='page-speed-insights']/div[2]/div[2]/div[2]/div[2]/div[1]/div/div[1]/a/div[2]")
+        score2 = driver.find_element_by_xpath(
+            "//*[@id='page-speed-insights']/div[2]/div[2]/div[2]/div[2]/div[1]/div/div[1]/a/div[2]")
         desktop_score[name] = int(score2.text)
         p2 = s.screenshot(english_name, "desktop")
         print(p2)
@@ -87,64 +88,44 @@ if __name__ == '__main__':
     # 初始化机器人小丁
     xiaoding = DingtalkChatbot(webhook)
     # FeedCard类型
-    # title="AG"+"---"+str(app_score["AG"])
 
-    card1 = CardItem(title="Web产品加载性能排行榜(Desktop)",
-                     url="https://www.yuque.com/docs/share/56975e6b-ba1b-42da-ad20-f49fb068d150",
-                     pic_url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
-    desktop_cards = [card1]
-
-    # card2 = CardItem(
-    #     title="No.1 " + desktop_result[0][0] + "(跑分%s): " % desktop_result[0][4] + "性能%s级" % desktop_result[0][1],
-    #     url=desktop_result[0][2],
-    #     pic_url=desktop_result[0][3])
-    # # card3 = CardItem(
-    #     title="No.2 " + desktop_result[1][0] + "(跑分%s): " % desktop_result[1][4] + "性能%s级" % desktop_result[1][1],
-    #     url=desktop_result[1][2],
-    #     pic_url=desktop_result[1][3])
-    # card4 = CardItem(
-    #     title="No.3 " + desktop_result[2][0] + "(跑分%s): " % desktop_result[2][4] + "性能%s级" % desktop_result[2][1],
-    #     url=desktop_result[2][2],
-    #     pic_url=desktop_result[2][3])
-    # card5 = CardItem(
-    #     title="No.4 " + desktop_result[3][0] + "(跑分%s): " % desktop_result[3][4] + "性能%s级" % desktop_result[3][1],
-    #     url=desktop_result[2][2],
-    #     pic_url=desktop_result[3][3])
-    # desktop_cards = [card1, card2, card3, card4, card5]
+    # card1 = CardItem(title="Web产品加载性能排行榜(Desktop)",
+    #                  url="https://www.yuque.com/docs/share/56975e6b-ba1b-42da-ad20-f49fb068d150",
+    #                  pic_url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
+    # desktop_cards = [card1]
+    #
+    #
+    # for i in range(7):
+    #     card = CardItem(
+    #         title="No.%s " % (i+1) + desktop_result[i][0] + "(跑分%s): " % desktop_result[i][4] + "性能%s级" % desktop_result[i][1],
+    #         url=desktop_result[i][2],
+    #         pic_url=desktop_result[i][3])
+    #     desktop_cards.append(card)
     # xiaoding.send_feed_card(desktop_cards)
-    for i in range(7):
-        card = CardItem(
-            title="No.%s " % (i+1) + desktop_result[i][0] + "(跑分%s): " % desktop_result[i][4] + "性能%s级" % desktop_result[i][1],
-            url=desktop_result[i][2],
-            pic_url=desktop_result[i][3])
-        desktop_cards.append(card)
-    xiaoding.send_feed_card(desktop_cards)
-
-
-
-
-    card1 = CardItem(title="Web产品加载性能排行榜(Mobile)",
-                     url="https://www.yuque.com/docs/share/56975e6b-ba1b-42da-ad20-f49fb068d150",
-                     pic_url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
-
-    app_cards = [card1]
-    for i in range(7):
-        card = CardItem(title="No.%s " % (i+1) + app_result[i][0] + "(跑分%s): " % app_result[i][4] + "性能%s级" % app_result[i][1],
-                        url=app_result[i][2],
-                        pic_url=app_result[i][3])
-        app_cards.append(card)
-    xiaoding.send_feed_card(app_cards)
-    # card2 = CardItem(title="No.1 " + app_result[0][0] + "(跑分%s): " % app_result[0][4] + "性能%s级" % app_result[0][1],
-    #                  url=app_result[0][2],
-    #                  pic_url=app_result[0][3])
-    # card3 = CardItem(title="No.2 " + app_result[1][0] + "(跑分%s): " % app_result[1][4] + "性能%s级" % app_result[1][1],
-    #                  url=app_result[1][2],
-    #                  pic_url=app_result[1][3])
-    # card4 = CardItem(title="No.3 " + app_result[2][0] + "(跑分%s): " % app_result[2][4] + "性能%s级" % app_result[2][1],
-    #                  url=app_result[2][2],
-    #                  pic_url=app_result[2][3])
-    # card5 = CardItem(title="No.4 " + app_result[3][0] + "(跑分%s): " % app_result[3][4] + "性能%s级" % app_result[3][1],
-    #                  url=app_result[3][2],
-    #                  pic_url=app_result[3][3])
-    # app_cards = [card1, card2, card3, card4, card5]
+    #
+    #
+    #
+    #
+    # card1 = CardItem(title="Web产品加载性能排行榜(Mobile)",
+    #                  url="https://www.yuque.com/docs/share/56975e6b-ba1b-42da-ad20-f49fb068d150",
+    #                  pic_url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
+    #
+    # app_cards = [card1]
+    # for i in range(7):
+    #     card = CardItem(title="%s、" % (i+1) + app_result[i][0] + "(跑分%s): " % app_result[i][4] + "性能%s级" % app_result[i][1],
+    #                     url=app_result[i][2],
+    #                     pic_url=app_result[i][3])
+    #     app_cards.append(card)
     # xiaoding.send_feed_card(app_cards)
+
+
+    # Markdown类型
+    title = '# **Web产品加载性能排行榜(Mobile)** \n '
+    summary_text = title
+    for i in range(7):
+        text = "- %s、" % (i + 1) + app_result[i][0] + "(跑分%s): " % app_result[i][4] + "性能**%s**级" % app_result[i][
+            1] + '\n' + \
+               '>![logo](%s)\n' % app_result[i][3] + \
+               '>![结果截图](%s)\n' % app_result[i][2]
+    summary_text = summary_text + text
+    xiaoding.send_markdown(title='Web产品加载性能排行榜', text=summary_text, is_at_all=True)
