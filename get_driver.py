@@ -20,4 +20,4 @@ from selenium import webdriver  # 导入selenium,注意不能使用import seleni
 #     driver.get(url)  # 通过get()方法，打开一个url站点
 
 
-driver = webdriver.Chrome("/home/ymserver/tmp")# 初始化一个谷歌浏览器实例：driver
+driver = webdriver.Chrome()# 初始化一个谷歌浏览器实例：driver
