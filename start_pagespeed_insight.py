@@ -15,13 +15,13 @@ import sys
 
 if __name__ == '__main__':
     # 记录产品名和对应分数
-    app_score = {}
+    # app_score = {}
     desktop_score = {}
     # 记录产品名和对应logo的线上地址
     name_logo = {}
 
     # 记录产品检测结果截图的url
-    app_addr = {}
+    #app_addr = {}
     desktop_addr = {}
 
     driver.implicitly_wait(1)
@@ -49,17 +49,19 @@ if __name__ == '__main__':
             print("此次检测失败，已结束程序，请重新开始")
             sys.exit()
 
-        score1 = driver.find_element_by_class_name("lh-gauge__percentage")
+        # score1 = driver.find_element_by_class_name("lh-gauge__percentage")
         # score1 = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "lh-gauge__percentage")))
-        print(score1.text)
-        app_score[name] = int(score1.text)
+        #app_score[name] = int(score1.text)
 
         time.sleep(2)
-        p1 = s.screenshot(english_name, "app")
-        print(p1)
-        pic_addr = "https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot%s" % p1
-        app_addr[name] = str(pic_addr)
-        time.sleep(2)
+        # 暂时不需要输出mobile 的排行榜，先隐藏
+
+        # p1 = s.screenshot(english_name, "app")
+        # print(p1)
+        # pic_addr = "https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot%s" % p1
+        # app_addr[name] = str(pic_addr)
+        # time.sleep(2)
+
         tag2 = driver.find_element_by_xpath("//div[text() = '桌面设备']")
         tag2.click()
         time.sleep(2)
@@ -74,12 +76,12 @@ if __name__ == '__main__':
     picture_to_github()
     driver.quit()
 
-    app_result = summary_result(app_score, app_addr, name_logo)
+    # app_result = summary_result(app_score, app_addr, name_logo)
     desktop_result = summary_result(desktop_score, desktop_addr, name_logo)
     print("桌面设备检查结果：")
     print(desktop_result)
-    print("移动设备检查结果：")
-    print(app_result)
+    # print("移动设备检查结果：")
+    # print(app_result)
 
     # *************************************这里填写自己钉钉群自定义机器人的token*****************************************
     webhook = 'https://oapi.dingtalk.com/robot/send?access_token=5ad36dff315ca4eab91c8aa0b9ef50ce163a64ba782ec6539309b4004ed20c7d'
@@ -120,7 +122,7 @@ if __name__ == '__main__':
 
     # Markdown类型
     title = '# **Web产品加载性能排行榜(Desktop)** \n ' + \
-            ">![PageSpeed Insight]https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png" + \
+            ">![PageSpeed Insight](https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png)\n" + \
             "> ## [了解更多详情](https://www.yuque.com/docs/share/56975e6b-ba1b-42da-ad20-f49fb068d150)\n"
     summary_text = title
     for i in range(7):
