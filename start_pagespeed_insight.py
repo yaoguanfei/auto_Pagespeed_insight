@@ -120,12 +120,23 @@ if __name__ == '__main__':
 
 
     # Markdown类型
-    title = '# **Web产品加载性能排行榜(Mobile)** \n '
+    title = '# **Web产品加载性能排行榜(Desktop)** \n '
     summary_text = title
     for i in range(7):
-        text = "- %s、" % (i + 1) + app_result[i][0] + "(跑分%s): " % app_result[i][4] + "性能**%s**级" % app_result[i][
+        text = "- %s、" % (i + 1) + desktop_result[i][0] + "(跑分%s): " %desktop_result[i][4] + "性能**%s**级" % desktop_result[i][
             1] + '\n' + \
-               '>![logo](%s)\n' % app_result[i][3] + \
-               '>![结果截图](%s)\n' % app_result[i][2]
-    summary_text = summary_text + text
+               '>![logo](%s)\n' % desktop_result[i][3] + \
+               '>![结果截图](%s)\n' % desktop_result[i][2]
+        summary_text = summary_text + text
     xiaoding.send_markdown(title='Web产品加载性能排行榜', text=summary_text, is_at_all=True)
+
+
+    # title = '# **Web产品加载性能排行榜(Mobile)** \n '
+    # summary_text = title
+    # for i in range(7):
+    #     text = "- %s、" % (i + 1) + app_result[i][0] + "(跑分%s): " % app_result[i][4] + "性能**%s**级" % app_result[i][
+    #         1] + '\n' + \
+    #            '>![logo](%s)\n' % app_result[i][3] + \
+    #            '>![结果截图](%s)\n' % app_result[i][2]
+    #     summary_text = summary_text + text
+    # xiaoding.send_markdown(title='Web产品加载性能排行榜', text=summary_text, is_at_all=True)
