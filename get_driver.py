@@ -18,5 +18,6 @@ from selenium.webdriver.chrome.options import Options
 os.system("export PATH=‘$PATH:/opt/google/chrome")
 chrome_options = Options()
 chrome_options.add_argument('--headless')
-driver = webdriver.Chrome(chrome_options=chrome_options)
+chromedriver = "/opt/google/chrome"
+driver = webdriver.Chrome(chromedriver, chrome_options=chrome_options)
 # driver = webdriver.PhantomJS()  # 初始化一个无头谷歌浏览器实例：driver,对PhantomJS的Selenium支持已被弃用，请使用无头版Chrome或Firefox
