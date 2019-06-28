@@ -39,6 +39,7 @@ if __name__ == '__main__':
         name_logo[name] = logo
         input.clear()
         input.send_keys(url)
+        print(url)
         input.send_keys(Keys.ENTER)
         wait = WebDriverWait(driver, 300)  # 显式等待，引入WebDriverWait，规定最大等待时长
         try:
