@@ -41,20 +41,20 @@ if __name__ == '__main__':
         input.send_keys(url)
         input.send_keys(Keys.ENTER)
         print(url)
-        wait = WebDriverWait(driver, 120)  # 显式等待，引入WebDriverWait，规定最大等待时长
-        try:
-            # 调用until方法，传入等待方法（节点出现）
-            # 出现该元素是检测成功且完毕的必要条件
-            tag1 = wait.until(EC.presence_of_element_located((By.XPATH, "//span[text() = '实测数据']")))
-        except Exception:
-            print("此次检测失败，已结束程序，请重新开始")
-            sys.exit()
+        # wait = WebDriverWait(driver, 120)  # 显式等待，引入WebDriverWait，规定最大等待时长
+        # try:
+        #     # 调用until方法，传入等待方法（节点出现）
+        #     # 出现该元素是检测成功且完毕的必要条件
+        #     tag1 = wait.until(EC.presence_of_element_located((By.XPATH, "//span[text() = '实测数据']")))
+        # except Exception:
+        #     print("此次检测失败，已结束程序，请重新开始")
+        #     sys.exit()
 
         # score1 = driver.find_element_by_class_name("lh-gauge__percentage")
         # score1 = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "lh-gauge__percentage")))
         #app_score[name] = int(score1.text)
 
-        time.sleep(2)
+        time.sleep(100)
         # 暂时不需要输出mobile 的排行榜，先隐藏
 
         # p1 = s.screenshot(english_name, "app")
