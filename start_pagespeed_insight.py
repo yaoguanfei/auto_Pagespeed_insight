@@ -53,7 +53,7 @@ if __name__ == '__main__':
         # score1 = driver.find_element_by_class_name("lh-gauge__percentage")
         # score1 = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "lh-gauge__percentage")))
         #app_score[name] = int(score1.text)
-
+        p2 = s.screenshot(english_name, "desktop")
         time.sleep(2)
         page = driver.page_source
         print(page)
