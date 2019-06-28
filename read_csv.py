@@ -21,7 +21,6 @@ def read_csv2(file):
         reader = csv.reader(f)
         csvresult = [row for row in reader]
         csvresult = csvresult[1:]
-    print(csvresult)
     return csvresult
 
 

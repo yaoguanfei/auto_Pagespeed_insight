@@ -40,7 +40,8 @@ if __name__ == '__main__':
         input.clear()
         input.send_keys(url)
         input.send_keys(Keys.ENTER)
-        wait = WebDriverWait(driver, 500)  # 显式等待，引入WebDriverWait，规定最大等待时长
+        print(url)
+        wait = WebDriverWait(driver, 120)  # 显式等待，引入WebDriverWait，规定最大等待时长
         try:
             # 调用until方法，传入等待方法（节点出现）
             # 出现该元素是检测成功且完毕的必要条件
@@ -94,7 +95,7 @@ if __name__ == '__main__':
 
     card1 = CardItem(title="Web产品加载性能排行榜(Desktop)",
                      url="https://www.yuque.com/docs/share/56975e6b-ba1b-42da-ad20-f49fb068d150",
-                     pic_url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
+                     pic_url=" http://uc-test-manage-00.umlife.net/img/google/PageSpeed_Insight.png")
     desktop_cards = [card1]
 
 
