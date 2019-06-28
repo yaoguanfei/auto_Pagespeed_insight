@@ -4,9 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/test.py" line="34" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fff3c01e-a3ef-460f-be5f-4d6b9b3f17f5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/start_pagespeed_insight.py" beforeDir="false" afterPath="$PROJECT_DIR$/start_pagespeed_insight.py" afterDir="false" />
-    </list>
+    <list default="true" id="fff3c01e-a3ef-460f-be5f-4d6b9b3f17f5" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +15,7 @@
     <session id="-1152671868">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.10" value="1" />
@@ -143,8 +141,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/start_pagespeed_insight.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="58" column="19" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
+            <state relative-caret-position="414">
+              <caret line="68" column="46" selection-start-line="68" selection-start-column="46" selection-end-line="68" selection-end-column="46" />
               <folding>
                 <element signature="e#0#47#0" expanded="true" />
               </folding>
@@ -655,8 +653,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/start_pagespeed_insight.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="58" column="19" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
+        <state relative-caret-position="414">
+          <caret line="68" column="46" selection-start-line="68" selection-start-column="46" selection-end-line="68" selection-end-column="46" />
           <folding>
             <element signature="e#0#47#0" expanded="true" />
           </folding>
