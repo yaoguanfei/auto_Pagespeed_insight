@@ -50,7 +50,6 @@ if __name__ == '__main__':
         except Exception:
             print("此次检测失败，已结束程序，请重新开始")
             sys.exit()
-        print()
         # score1 = driver.find_element_by_class_name("lh-gauge__percentage")
         # score1 = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "lh-gauge__percentage")))
         #app_score[name] = int(score1.text)
@@ -65,7 +64,7 @@ if __name__ == '__main__':
         # time.sleep(2)
 
         # tag2 = driver.find_element_by_xpath("//div[text() = '桌面设备']")
-        tag2 = driver.find_element_by_xpath("//*[@id=':8']/div/div")
+        tag2 = driver.find_element_by_id(":8")
         tag2.click()
         time.sleep(2)
         score2 = driver.find_element_by_xpath(
