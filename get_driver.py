@@ -1,6 +1,6 @@
 import os
 from selenium import webdriver  # 导入selenium,注意不能使用import selenium
-
+from selenium.webdriver.chrome.options import Options
 
 
 # if drivername.lower() == "google" or drivername == "chrome":
@@ -19,4 +19,6 @@ from selenium import webdriver  # 导入selenium,注意不能使用import seleni
 #     driver.maximize_window()  # 最大化浏览器
 #     driver.get(url)  # 通过get()方法，打开一个url站点'
 os.system("export PATH=‘$PATH:/home/ymserver/tmp/chromedriver’ ")
-driver = webdriver.Chrome()# 初始化一个谷歌浏览器实例：driver
+chrome_options = Options()
+chrome_options.add_argument('--headless')
+driver = webdriver.Chrome(chrome_options=chrome_options)# 初始化一个无头谷歌浏览器实例：driver
