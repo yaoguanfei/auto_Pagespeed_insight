@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 from selenium import webdriver  # 导入selenium,注意不能使用import selenium
 from selenium.webdriver.chrome.options import Options
