@@ -70,7 +70,8 @@ if __name__ == '__main__':
         desktop_score[name] = int(score2.text)
         p2 = s.screenshot(english_name, "desktop")
         print(p2)
-        pic_addr = "https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot%s" % p2
+        pic_addr = " http://uc-test-manage-00.umlife.net/img/google" % p2
+        # pic_addr = "https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot%s" % p2
         desktop_addr[name] = str(pic_addr)
     # 一次性上传所有的截图
     picture_to_github()
