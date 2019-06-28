@@ -8,7 +8,7 @@ import time
 from save_screenshot import s
 from get_driver import driver
 from chatbot import DingtalkChatbot, ActionCard, FeedLink, CardItem
-from push_pic_github import picture_to_github
+from push_pic_github import picture_to_gitlab
 from summary_result import summary_result
 from config import Chinese_to_English
 import sys
@@ -44,7 +44,8 @@ if __name__ == '__main__':
         try:
             # 调用until方法，传入等待方法（节点出现）
             # 出现该元素是检测成功且完毕的必要条件
-            tag1 = wait.until(EC.presence_of_element_located((By.XPATH, "//span[text() = '实测数据']")))
+            # tag1 = wait.until(EC.presence_of_element_located((By.XPATH, "//span[text() = '实测数据']")))
+            tag1 = wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='page-speed-insights']/div[2]/div[2]/div[2]/div[1]/div[2]/div/div[1]/div[1]/div[1]/span[1]")))
         except Exception:
             print("此次检测失败，已结束程序，请重新开始")
             sys.exit()
@@ -62,7 +63,8 @@ if __name__ == '__main__':
         # app_addr[name] = str(pic_addr)
         # time.sleep(2)
 
-        tag2 = driver.find_element_by_xpath("//div[text() = '桌面设备']")
+        # tag2 = driver.find_element_by_xpath("//div[text() = '桌面设备']")
+        tag2 = driver.find_element_by_xpath("//*[@id=':8']/div/div")
         tag2.click()
         time.sleep(2)
         score2 = driver.find_element_by_xpath(
@@ -71,9 +73,10 @@ if __name__ == '__main__':
         p2 = s.screenshot(english_name, "desktop")
         pic_addr = " http://uc-test-manage-00.umlife.net/img/google%s" % p2
         # pic_addr = "https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot%s" % p2
+        print(str(pic_addr))
         desktop_addr[name] = str(pic_addr)
     # 一次性上传所有的截图
-    picture_to_github()
+    # picture_to_gitlab()
     driver.quit()
 
     # app_result = summary_result(app_score, app_addr, name_logo)
