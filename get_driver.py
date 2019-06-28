@@ -15,7 +15,7 @@ from selenium.webdriver.chrome.options import Options
 #     driver.implicitly_wait(5)
 #     driver.maximize_window()  # 最大化浏览器
 #     driver.get(url)  # 通过get()方法，打开一个url站点'
-os.system("export PATH=‘$PATH:/opt/google/chromedriver")
+os.system("export PATH=‘$PATH:/opt/google/chrome")
 chrome_options = Options()
 chrome_options.add_argument('--headless')
 driver = webdriver.Chrome(chrome_options=chrome_options)
