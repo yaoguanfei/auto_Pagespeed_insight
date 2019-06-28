@@ -8,8 +8,8 @@ from get_driver import driver
 class save:
     def screenshot(self,name,type):
         #i=1
-        scrpath = '/opt/lampp/htdocs/img/google/'  # 指定的保存目录
-        # scrpath = '/home/youmi/PycharmProjects/selenium_study/screen_shot'  # 指定的保存目录
+        #scrpath = '/opt/lampp/htdocs/img/google/'  # 指定的保存目录
+        scrpath = '/home/youmi/PycharmProjects/selenium_study/screen_shot'  # 指定的保存目录
         dt = datetime.now()# 2019-01-10 17:18:20.310134
         timeee = dt.strftime( '%Y%m%d-%Hh%Mm%Ss' )
         capturename = '/' + name + '--' + type + '--'+ str(timeee)+'.png'  # 自定义命名截图名字
