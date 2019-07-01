@@ -42,7 +42,7 @@ if __name__ == '__main__':
         input.send_keys(url)
         print(url)
         input.send_keys(Keys.ENTER)
-        wait = WebDriverWait(driver, 300)  # 显式等待，引入WebDriverWait，规定最大等待时长
+        wait = WebDriverWait(driver, 150)  # 显式等待，引入WebDriverWait，规定最大等待时长
         try:
             # 调用until方法，传入等待方法（节点出现）
             # 出现该元素是检测成功且完毕的必要条件
@@ -56,7 +56,7 @@ if __name__ == '__main__':
         # score1 = driver.find_element_by_class_name("lh-gauge__percentage")
         # score1 = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "lh-gauge__percentage")))
         # app_score[name] = int(score1.text)
-        print('检测成功一个')
+        print('%s检测成功' % name)
         time.sleep(2)
         # page = driver.page_source
         # print(page)
@@ -76,7 +76,7 @@ if __name__ == '__main__':
 
         score2 = int(score[1].text)
 
-        print('分数为：' + str(score2))
+        print('desktop分数为：' + str(score2))
         desktop_score[name] = score2
         p2 = s.screenshot(english_name, "desktop")
         pic_addr = " http://uc-test-manage-00.umlife.net/img/google%s" % p2
