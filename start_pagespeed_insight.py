@@ -52,6 +52,7 @@ if __name__ == '__main__':
             tag1 = wait.until(EC.presence_of_element_located((By.XPATH, "//span[text() = 'Opportunities']")))
         except Exception:
             print("此次检测失败，已结束程序，请重新开始")
+            driver.quit()
             sys.exit()
         # score1 = driver.find_element_by_class_name("lh-gauge__percentage")
         # score1 = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "lh-gauge__percentage")))
