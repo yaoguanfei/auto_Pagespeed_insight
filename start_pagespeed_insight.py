@@ -76,12 +76,12 @@ if __name__ == '__main__':
 
         score2 = int(score[1].text)
 
-
+        print('分数为：'+ score2)
         desktop_score[name] = score2
         p2 = s.screenshot(english_name, "desktop")
         pic_addr = " http://uc-test-manage-00.umlife.net/img/google%s" % p2
         # pic_addr = "https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot%s" % p2
-        print(str(pic_addr))
+
         desktop_addr[name] = str(pic_addr)
     # 一次性上传所有的截图
     # picture_to_gitlab()
