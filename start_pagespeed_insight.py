@@ -76,7 +76,7 @@ if __name__ == '__main__':
 
         score2 = int(score[1].text)
 
-        print('分数为：'+ score2)
+        print('分数为：' + str(score2))
         desktop_score[name] = score2
         p2 = s.screenshot(english_name, "desktop")
         pic_addr = " http://uc-test-manage-00.umlife.net/img/google%s" % p2
