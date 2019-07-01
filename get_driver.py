@@ -16,7 +16,7 @@ from selenium.webdriver.chrome.options import Options
 chrome_options = Options()
 chrome_options.binary_location = "/usr/bin/google-chrome"
 chrome_options.add_argument('--headless')
-chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--no-sandbox') # 让Chrome在root权限下跑
 chrome_options.add_argument('--disable-dev-shm-usage')
 driver = webdriver.Chrome(executable_path=r'/usr/bin/chromedriver', chrome_options=chrome_options)
 # driver = webdriver.PhantomJS()  # 初始化一个无头谷歌浏览器实例：driver,对PhantomJS的Selenium支持已被弃用，请使用无头版Chrome或Firefox
