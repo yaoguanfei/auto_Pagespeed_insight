@@ -109,7 +109,7 @@ if __name__ == '__main__':
 
     for i in range(7):
         card = CardItem(
-            title="%s、" % (i + 1) + desktop_result[i][0] + "(跑分%s): " % desktop_result[i][4] + "性能%s级" %
+            title="%s、" % str(i + 1) + desktop_result[i][0] + "(跑分%s): " % str(desktop_result[i][4]) + "性能%s级" %
                   desktop_result[i][1],
             url=desktop_result[i][2],
             pic_url=desktop_result[i][3])
