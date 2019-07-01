@@ -51,16 +51,21 @@ if __name__ == '__main__':
             # tag1 = wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='page-speed-insights']/div[2]/div[2]/div[2]/div[1]/div[2]/div/div[1]/div[1]/div[1]/span[1]")))
             tag1 = wait.until(EC.presence_of_element_located((By.XPATH, "//span[text() = 'Opportunities']")))
         except Exception:
-            print("此次检测失败，已结束程序，请重新开始")
-            driver.quit()
-            sys.exit()
+            driver.refresh()  # 刷新方法 重新检查
+            print("此次检测失败，已重新开始")
+            try:
+                tag1 = wait.until(EC.presence_of_element_located((By.XPATH, "//span[text() = 'Opportunities']")))
+            except Exception:
+                print("再次检测失败，结束程序")
+                driver.quit()
+                sys.exit()
         # score1 = driver.find_element_by_class_name("lh-gauge__percentage")
         # score1 = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "lh-gauge__percentage")))
         # app_score[name] = int(score1.text)
         print('%s检测成功' % name)
         time.sleep(2)
-        # page = driver.page_source
-        # print(page)
+        page = driver.page_source
+        print(page)
         # 暂时不需要输出mobile 的排行榜，先隐藏
 
         # p1 = s.screenshot(english_name, "app")
@@ -74,7 +79,7 @@ if __name__ == '__main__':
         tag2.click()
         time.sleep(2)
         score = driver.find_elements_by_class_name("lh-gauge__percentage")
-
+        print(score)
         score2 = int(score[1].text)
 
         print('desktop分数为：' + str(score2))
