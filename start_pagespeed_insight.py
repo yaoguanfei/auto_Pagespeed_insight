@@ -1,3 +1,4 @@
+# -*- coding:utf8 -*-
 from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -21,7 +22,7 @@ if __name__ == '__main__':
     name_logo = {}
 
     # 记录产品检测结果截图的url
-    #app_addr = {}
+    # app_addr = {}
     desktop_addr = {}
 
     driver.implicitly_wait(1)
@@ -45,14 +46,16 @@ if __name__ == '__main__':
         try:
             # 调用until方法，传入等待方法（节点出现）
             # 出现该元素是检测成功且完毕的必要条件
+            # 有头
             # tag1 = wait.until(EC.presence_of_element_located((By.XPATH, "//span[text() = '实测数据']")))
-            tag1 = wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='page-speed-insights']/div[2]/div[2]/div[2]/div[1]/div[2]/div/div[1]/div[1]/div[1]/span[1]")))
+            # tag1 = wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='page-speed-insights']/div[2]/div[2]/div[2]/div[1]/div[2]/div/div[1]/div[1]/div[1]/span[1]")))
+            tag1 = wait.until(EC.presence_of_element_located((By.XPATH, "//span[text() = 'Opportunities']")))
         except Exception:
             print("此次检测失败，已结束程序，请重新开始")
             sys.exit()
         # score1 = driver.find_element_by_class_name("lh-gauge__percentage")
         # score1 = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "lh-gauge__percentage")))
-        #app_score[name] = int(score1.text)
+        # app_score[name] = int(score1.text)
         print('检测成功一个')
         time.sleep(2)
         page = driver.page_source
@@ -66,12 +69,15 @@ if __name__ == '__main__':
         # time.sleep(2)
 
         # tag2 = driver.find_element_by_xpath("//div[text() = '桌面设备']")
-        tag2 = driver.find_element_by_id(":8")
+        tag2 = driver.find_element_by_class_name('tab-desktop')
         tag2.click()
         time.sleep(2)
-        score2 = driver.find_element_by_xpath(
-            "//*[@id='page-speed-insights']/div[2]/div[2]/div[2]/div[2]/div[1]/div/div[1]/a/div[2]")
-        desktop_score[name] = int(score2.text)
+        score = driver.find_elements_by_class_name("lh-gauge__percentage")
+
+        score2 = int(score[1].text)
+
+
+        desktop_score[name] = score2
         p2 = s.screenshot(english_name, "desktop")
         pic_addr = " http://uc-test-manage-00.umlife.net/img/google%s" % p2
         # pic_addr = "https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot%s" % p2
@@ -101,16 +107,14 @@ if __name__ == '__main__':
                      pic_url=" http://uc-test-manage-00.umlife.net/img/google/PageSpeed_Insight.png")
     desktop_cards = [card1]
 
-
     for i in range(7):
         card = CardItem(
-            title="%s、" % (i+1) + desktop_result[i][0] + "(跑分%s): " % desktop_result[i][4] + "性能%s级" % desktop_result[i][1],
+            title="%s、" % (i + 1) + desktop_result[i][0] + "(跑分%s): " % desktop_result[i][4] + "性能%s级" %
+                  desktop_result[i][1],
             url=desktop_result[i][2],
             pic_url=desktop_result[i][3])
         desktop_cards.append(card)
     xiaoding.send_feed_card(desktop_cards)
-
-
 
     # card1 = CardItem(title="Web产品加载性能排行榜(Mobile)",
     #                  url="https://www.yuque.com/docs/share/56975e6b-ba1b-42da-ad20-f49fb068d150",
@@ -136,5 +140,3 @@ if __name__ == '__main__':
     #            '>![结果截图](%s)\n' % desktop_result[i][2]
     #     summary_text = summary_text + text
     # xiaoding.send_markdown(title='Web产品加载性能排行榜', text=summary_text, is_at_all=True)
-
-
