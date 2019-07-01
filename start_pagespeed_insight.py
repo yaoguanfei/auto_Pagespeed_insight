@@ -31,6 +31,10 @@ if __name__ == '__main__':
     input = driver.find_element_by_name("url")
     # 读取到的webdata.csv 的每一行数据
     csvresult = read_csv2("webdata.csv")
+    # 清除浏览器cookies
+    cookies = driver.get_cookies()
+    print(f"main: cookies = {cookies}")
+    driver.delete_all_cookies()
     # 遍历读取到数据，逐一进行检测，获取分数，上传截图到github上并返回图片url
     for i in range(len(csvresult)):
         name = str(csvresult[i][0])
@@ -42,7 +46,7 @@ if __name__ == '__main__':
         input.send_keys(url)
         print(url)
         input.send_keys(Keys.ENTER)
-        wait = WebDriverWait(driver, 150)  # 显式等待，引入WebDriverWait，规定最大等待时长
+        wait = WebDriverWait(driver, 100)  # 显式等待，引入WebDriverWait，规定最大等待时长
         try:
             # 调用until方法，传入等待方法（节点出现）
             # 出现该元素是检测成功且完毕的必要条件
