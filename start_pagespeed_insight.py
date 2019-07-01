@@ -58,8 +58,8 @@ if __name__ == '__main__':
         # app_score[name] = int(score1.text)
         print('检测成功一个')
         time.sleep(2)
-        page = driver.page_source
-        print(page)
+        # page = driver.page_source
+        # print(page)
         # 暂时不需要输出mobile 的排行榜，先隐藏
 
         # p1 = s.screenshot(english_name, "app")
