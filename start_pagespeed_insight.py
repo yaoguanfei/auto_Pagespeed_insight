@@ -32,9 +32,9 @@ if __name__ == '__main__':
     # res = requests.get('https://developers.google.com/speed/pagespeed/insights').text
     # print(res)
     # print(driver.current_url)
-    time.sleep(300)
-    page = driver.page_source
-    print(page)
+    time.sleep(3)
+    # page = driver.page_source
+    # print(page)
     # input = driver.find_element_by_name("url")
 
     input = driver.find_element_by_class_name("label-input-label")
@@ -98,7 +98,7 @@ if __name__ == '__main__':
         print('desktop分数为：' + str(score2))
         desktop_score[name] = score2
         p2 = s.screenshot(english_name, "desktop")
-        pic_addr = " http://uc-test-manage-00.umlife.net/img/google%s" % p2
+        pic_addr = "http://128.1.49.161" % p2
         # pic_addr = "https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot%s" % p2
 
         desktop_addr[name] = str(pic_addr)
