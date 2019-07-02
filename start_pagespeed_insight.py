@@ -124,7 +124,7 @@ if __name__ == '__main__':
 
     card1 = CardItem(title="Web产品加载性能排行榜(Desktop)",
                      url="https://www.yuque.com/docs/share/56975e6b-ba1b-42da-ad20-f49fb068d150",
-                     pic_url=" http://uc-test-manage-00.umlife.net/img/google/PageSpeed_Insight.png")
+                     pic_url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
     desktop_cards = [card1]
 
     for i in range(7):
