@@ -99,7 +99,7 @@ if __name__ == '__main__':
         print('desktop分数为：' + str(score2))
         desktop_score[name] = score2
         p2 = s.screenshot(english_name, "desktop")
-        pic_addr = "http://128.1.49.161" % p2
+        pic_addr = "http://128.1.49.161%s" % p2
         # pic_addr = "https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot%s" % p2
 
         desktop_addr[name] = str(pic_addr)
