@@ -25,7 +25,7 @@ if __name__ == '__main__':
     # app_addr = {}
     desktop_addr = {}
 
-    driver.implicitly_wait(1)
+    driver.implicitly_wait(3)
     driver.get("https://developers.google.com/speed/pagespeed/insights")  # 通过get()方法，打开一个url站点
     import requests
     res = requests.get('https://developers.google.com/speed/pagespeed/insights').text
@@ -35,6 +35,7 @@ if __name__ == '__main__':
     page = driver.page_source
     # print(page)
     # input = driver.find_element_by_name("url")
+    time.sleep(5)
     input = driver.find_element_by_class_name("label-input-label")
     # 读取到的webdata.csv 的每一行数据
     csvresult = read_csv2("webdata.csv")
