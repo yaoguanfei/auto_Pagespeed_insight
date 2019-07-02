@@ -28,6 +28,8 @@ if __name__ == '__main__':
     driver.implicitly_wait(1)
     driver.get("https://developers.google.com/speed/pagespeed/insights")  # 通过get()方法，打开一个url站点
     time.sleep(5)
+    page = driver.page_source
+    print(page)
     # input = driver.find_element_by_name("url")
     input = driver.find_element_by_class_name("label-input-label")
     # 读取到的webdata.csv 的每一行数据
@@ -69,8 +71,8 @@ if __name__ == '__main__':
         # app_score[name] = int(score1.text)
         print('%s检测成功' % name)
         time.sleep(2)
-        page = driver.page_source
-        print(page)
+        # page = driver.page_source
+        # print(page)
         # 暂时不需要输出mobile 的排行榜，先隐藏
 
         # p1 = s.screenshot(english_name, "app")
