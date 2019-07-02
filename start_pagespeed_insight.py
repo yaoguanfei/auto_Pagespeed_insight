@@ -27,7 +27,7 @@ if __name__ == '__main__':
 
     driver.implicitly_wait(3)
     driver.get("https://developers.google.com/speed/pagespeed/insights")  # 通过get()方法，打开一个url站点
-    driver.get_screenshot_as_file('/opt/lampp/htdocs/img/google/')
+    driver.get_screenshot_as_file('/opt/lampp/htdocs/img/google/home.png')
     # import requests
     # res = requests.get('https://developers.google.com/speed/pagespeed/insights').text
     # print(res)
