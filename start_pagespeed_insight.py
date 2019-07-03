@@ -115,9 +115,9 @@ if __name__ == '__main__':
     # print(app_result)
 
     # *************************************这里填写自己钉钉群自定义机器人的token*****************************************
-    webhook = 'https://oapi.dingtalk.com/robot/send?access_token=5ad36dff315ca4eab91c8aa0b9ef50ce163a64ba782ec6539309b4004ed20c7d'
+    #webhook = 'https://oapi.dingtalk.com/robot/send?access_token=5ad36dff315ca4eab91c8aa0b9ef50ce163a64ba782ec6539309b4004ed20c7d'
     # 研发中心群
-    # webhook = 'https://oapi.dingtalk.com/robot/send?access_token=8f9e92f925336ebcaebe0c880fc957a9ed15526b45e6bc56830d18be7fd6c20e'
+    webhook = 'https://oapi.dingtalk.com/robot/send?access_token=8f9e92f925336ebcaebe0c880fc957a9ed15526b45e6bc56830d18be7fd6c20e'
     # 用户手机号列表
     # at_mobiles = ['*************************这里填写需要提醒的用户的手机号码，字符串或数字都可以****************************']
     # 初始化机器人小丁
