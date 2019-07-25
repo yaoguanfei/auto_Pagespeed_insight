@@ -31,7 +31,7 @@ if __name__ == '__main__':
     # 固定便于测试
     from_addr = "yaoguanfei@youmi.net"
     password = "Kxmyt970205"
-    to_addr = "yaoguanfei@youmi.net"
+    to_addr = "zhangchuzhao@youmi.net"
     smtp_server = "smtp.exmail.qq.com"
 
     # 使用emai-MIMEtext 构建邮件正文
@@ -45,7 +45,7 @@ if __name__ == '__main__':
     msg['Subject'] = Header('有米Web产品加载性能排行榜', 'utf-8').encode()
 
     # 添加附件就是加上一个MIMEBase，从本地读取一个图片:
-    with open('/home/youmi/PycharmProjects/selenium_study/screenshot/AG--移动设备--2019-06-21 15:10:50.451933.png',
+    with open('/home/youmi/图片/insight_result.png',
               'rb') as f:
         # 设置附件的MIME和文件名，这里是png类型:
         mime = MIMEBase('image', 'png', filename='test.png')

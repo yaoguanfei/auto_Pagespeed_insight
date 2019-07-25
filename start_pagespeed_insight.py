@@ -37,9 +37,11 @@ if __name__ == '__main__':
     #       }
 
     csvresult = read_csv2("webdata.csv")
+    main_sum = 0
     for i in range(len(csvresult)):
         # 读取第1，3,5等单数行的name,作为product名
         if i % 2 == 0:
+            main_sum = main_sum + 1
             product_name = str(csvresult[i][0])
             products[product_name] = {}
             url = str(csvresult[i][1])
@@ -61,6 +63,8 @@ if __name__ == '__main__':
             competing_products["level"] = 0
             products[product_name]["competing_products"] = competing_products
 
+    insight_times = int(input('请输入需要检测的次数： '))
+
     driver.implicitly_wait(3)
 
     driver.get("https://developers.google.com/speed/pagespeed/insights")  # 通过get()方法，打开一个url站点
@@ -69,12 +73,13 @@ if __name__ == '__main__':
     # print(page)
     # input = driver.find_element_by_name("url")
 
-    input = driver.find_element_by_class_name("label-input-label")
+    inputt = driver.find_element_by_class_name("label-input-label")
     # 读取到的webdata.csv 的每一行数据
 
     # 进行多轮检测，一轮依次检测各个web 产品，循环进行多次：
     # ***********    一共需要检测n轮，则需要改为n          ********************
-    for n in range(2):
+
+    for n in range(insight_times):
         print("第%s轮检测开始" % (n + 1))
         # 清除浏览器cookies
         cookies = driver.get_cookies()
@@ -87,9 +92,9 @@ if __name__ == '__main__':
             name = str(csvresult[i][0])
             if url == '':
                 continue
-            input.clear()
-            input.send_keys(url)
-            input.send_keys(Keys.ENTER)
+            inputt.clear()
+            inputt.send_keys(url)
+            inputt.send_keys(Keys.ENTER)
             wait = WebDriverWait(driver, 200)  # 显式等待，引入WebDriverWait，规定最大等待时长
             try:
                 # 调用until方法，传入等待方法（节点出现）
@@ -127,9 +132,12 @@ if __name__ == '__main__':
             tag2 = driver.find_element_by_class_name('tab-desktop')
             tag2.click()
             time.sleep(3)
-            # 会获取到两个分数，1个mibole,1个desktop
-            score = driver.find_elements_by_class_name("lh-gauge__percentage")
-            score2 = int(score[1].text)
+
+            score = driver.find_element_by_xpath(
+                "//*[@id='page-speed-insights']/div[2]/div[2]/div[2]/div[2]/div[1]/div/div[1]/a/div[2]")
+            # # 会获取到两个分数，1个mibole,1个desktop
+            # score = driver.find_elements_by_class_name("lh-gauge__percentage")
+            score2 = int(score.text)
             print('desktop分数为：' + str(score2))
             # 检测如是主产品，把分数填入主产品的score中
             if i % 2 == 0:
@@ -171,7 +179,7 @@ if __name__ == '__main__':
                         for i in range(len(score_list)):
                             n = len(score_list)
                             s = s + score_list[i]
-                        average = (round(s / n, 2))  # 使结果保留两位小数
+                        average = (round(s / n, 1))  # 使结果保留两位小数
                         v["score"] = average
                         v["level"] = score2level(average)
     print(products)
@@ -183,13 +191,13 @@ if __name__ == '__main__':
 
     # *************************************这里填写自己钉钉群自定义机器人的token*****************************************
     # 个人群，供调试
-    # webhook = 'https://oapi.dingtalk.com/robot/send?access_token=febec6b869bf218de1798a25469fee9b34ff27c71a5d7f32348d0183dd9ee7eb'
+    webhook = 'https://oapi.dingtalk.com/robot/send?access_token=febec6b869bf218de1798a25469fee9b34ff27c71a5d7f32348d0183dd9ee7eb'
 
     # 内部群，供预览
-    webhook = 'https://oapi.dingtalk.com/robot/send?access_token=5ad36dff315ca4eab91c8aa0b9ef50ce163a64ba782ec6539309b4004ed20c7d'
+    # webhook = 'https://oapi.dingtalk.com/robot/send?access_token=5ad36dff315ca4eab91c8aa0b9ef50ce163a64ba782ec6539309b4004ed20c7d'
 
-    # 研发中心群，正式发布
-    # webhook = 'https://oapi.dingtalk.com/robot/send?access_token=8f9e92f925336ebcaebe0c880fc957a9ed15526b45e6bc56830d18be7fd6c20e'
+    # 产研交流群，正式发布
+    # webhook = 'https://oapi.dingtalk.com/robot/send?access_token=e03e3afd79b94d46d50b72f225a0b3027bdb6a161f31ac8ba791c4fe99e6cc7b'
     # 用户手机号列表
     # at_mobiles = ['*************************这里填写需要提醒的用户的手机号码，字符串或数字都可以****************************']
     # 初始化机器人小丁
@@ -201,30 +209,30 @@ if __name__ == '__main__':
                      pic_url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/PageSpeed_Insight.png")
     desktop_cards = [card1]
 
-    # ***********      一共需要检测n个主产品，则需要改为n      *************
-    for i in range(7):
+    # ***********      *************
+    improve_team = []
+    for i in range(main_sum):
         # 主产品信息
         # 竞品信息
         # 判断是否存在竞品信息
         # 存在和不存在输出信息不同
-        if desktop_result[i][1]["competing_products"]["name"] == "暂无竞品":
-            card = CardItem(
-                title="%s、" % str(i + 1) + str(desktop_result[i][0]) + "(跑分%s): " % str(
-                    desktop_result[i][1]["score"]) + "性能%s级" %
-                      str(desktop_result[i][1]["level"]) + "\n" + "      ******** 暂无竞品 *********",
-                url="https://www.yuque.com/docs/share/56975e6b-ba1b-42da-ad20-f49fb068d150",
-                pic_url=desktop_result[i][1]["logo"])
-        else:
-            card = CardItem(
-                title="%s、" % str(i + 1) + str(desktop_result[i][0]) + "(跑分%s): " % str(
-                    desktop_result[i][1]["score"]) + "性能%s级" %
-                      str(desktop_result[i][1]["level"]) + "\n"+ "      "+ str(
-                    desktop_result[i][1]["competing_products"]["name"]) + "(跑分%s): " % str(
-                    desktop_result[i][1]["competing_products"]["score"]) + "性能%s级" % str(
-                    desktop_result[i][1]["competing_products"]["level"]),
-                url="https://www.yuque.com/docs/share/56975e6b-ba1b-42da-ad20-f49fb068d150",
-                pic_url=desktop_result[i][1]["logo"])
+        if desktop_result[i][1]["level"] == 'C' or desktop_result[i][1]["level"] == 'D':
+            improve_team.append(desktop_result[i][0])
+        card = CardItem(
+            title="%s、" % str(i + 1) + str(desktop_result[i][0]) + "(跑分%s): " % str(
+                desktop_result[i][1]["score"]) + "性能%s级" %
+                  str(desktop_result[i][1]["level"]),
+            url="https://www.yuque.com/docs/share/56975e6b-ba1b-42da-ad20-f49fb068d150",
+            pic_url=desktop_result[i][1]["logo"])
         desktop_cards.append(card)
+        if desktop_result[i][1]["competing_products"]["name"] != "暂无竞品":
+            card1 = CardItem(
+                title="      " + str(desktop_result[i][1]["competing_products"]["name"]) + "(跑分%s): " % str(
+                    desktop_result[i][1]["competing_products"]["score"]) + "性能%s级" %
+                      str(desktop_result[i][1]["competing_products"]["level"]),
+                url="https://www.yuque.com/docs/share/56975e6b-ba1b-42da-ad20-f49fb068d150",
+                pic_url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/jinpin.png")
+            desktop_cards.append(card1)
 
         # title=str(desktop_result[i][1]["competing_products"]["name"]) + "(跑分%s): " % str(
         #     desktop_result[i][1]["competing_products"]["score"]) + "性能%s级" %
@@ -236,7 +244,7 @@ if __name__ == '__main__':
     card2 = CardItem(
         title="Powered by：Google PageSpeed           Insights",
         url="https://developers.google.com/speed/pagespeed/insights/",
-        pic_url="https://raw.githubusercontent.com/yaoguanfei/auto_Pagespeed_insight/master/screen_shot/speed.jpg")
+        pic_url=" ")
     desktop_cards.append(card2)
     xiaoding.send_feed_card(desktop_cards)
 
@@ -252,3 +260,12 @@ if __name__ == '__main__':
     #            '>![结果截图](%s)\n' % desktop_result[i][2]
     #     summary_text = summary_text + text
     # xiaoding.send_markdown(title='Web产品加载性能排行榜', text=summary_text, is_at_all=True)
+    team_str = ""
+    for i in range(len(improve_team)):
+        team_str = team_str + " @" + str(improve_team[i]) + "团队 "
+
+    xiaoding.send_text(
+        msg='温馨提示：\n Dear all, Web产品加载性能排行榜已公布,性能A级及以上'
+            '团队将获得质量之星积分的奖励，性能C级及以下的团队%s需要及时跟进优化哦,让产品质量更上一个台阶～、\n'
+            '更多详情敬请查看：http://kks.me/br6Nb  ' % team_str,
+        is_at_all=True)
