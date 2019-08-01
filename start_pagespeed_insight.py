@@ -190,17 +190,7 @@ if __name__ == '__main__':
     print(desktop_result)
 
     # *************************************这里填写自己钉钉群自定义机器人的token*****************************************
-    # 个人群，供调试
-    webhook = 'https://oapi.dingtalk.com/robot/send?access_token=febec6b869bf218de1798a25469fee9b34ff27c71a5d7f32348d0183dd9ee7eb'
-
-    # 内部群，供预览
-    # webhook = 'https://oapi.dingtalk.com/robot/send?access_token=5ad36dff315ca4eab91c8aa0b9ef50ce163a64ba782ec6539309b4004ed20c7d'
-
-    # 产研交流群，正式发布
-    # webhook = 'https://oapi.dingtalk.com/robot/send?access_token=e03e3afd79b94d46d50b72f225a0b3027bdb6a161f31ac8ba791c4fe99e6cc7b'
-    # 用户手机号列表
-    # at_mobiles = ['*************************这里填写需要提醒的用户的手机号码，字符串或数字都可以****************************']
-    # 初始化机器人小丁
+    webhook = " "
     xiaoding = DingtalkChatbot(webhook)
     # FeedCard类型
 
